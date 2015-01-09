@@ -1,0 +1,33 @@
+﻿<Window x:Class="MyoTestv4.ApplicationView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:MyoTestv4"
+        Title="Gesture Physio" Height="350" Width="525" Background="#141c28">
+
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type local:HomeViewModel}">
+            <local:HomeView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type local:AdductionAbductionFlexionViewModel}">
+            <local:AdductionAbductionFlexionView />
+        </DataTemplate>
+        
+    </Window.Resources>
+
+    <DockPanel>
+        <Border DockPanel.Dock="Left" BorderBrush="Black" BorderThickness="0,0,1,0">
+            <ItemsControl ItemsSource="{Binding PageViewModels}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Button Content="{Binding Name}"
+                                Command="{Binding DataContext.ChangePageCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
+                                CommandParameter="{Binding }"
+                                Background="#00bdde" Foreground="White" Margin="10,20"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Border>
+
+        <ContentControl Content="{Binding CurrentPageViewModel}" />
+    </DockPanel>
+</Window>
