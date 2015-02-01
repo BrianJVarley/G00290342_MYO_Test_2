@@ -25,6 +25,11 @@ namespace MyoTestv4
         private FacebookClient FBClient;
         private FacebookClient fbC;
         public static string AccessToken { get; set; }
+        public static string Name;
+        public static string Gender;
+        public static string Link;
+
+
         public HomeView()
         {
             InitializeComponent();
@@ -83,6 +88,11 @@ namespace MyoTestv4
                 TBInfos.Text = "Name : " + (me.name ?? (object)string.Empty).ToString() + "\n\r"
                                + "Gender : " + (me.gender ?? (object)string.Empty).ToString() + "\n\r"
                                + "Link : " + (me.link ?? (object)string.Empty).ToString();
+
+                //set profile fields to string variables
+                Name = me.name;
+                Gender = me.gender;
+                Link = me.link;
       
             }
         }
