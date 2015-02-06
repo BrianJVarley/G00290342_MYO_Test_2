@@ -10,10 +10,6 @@ namespace MyoTestv4
     {
 
        
-
-    
-
-
         public string Name
         {
             get
