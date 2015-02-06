@@ -9,6 +9,11 @@ namespace MyoTestv4
     public class AdductionAbductionFlexionViewModel : ObservableObject, IPageViewModel
     {
 
+       
+
+    
+
+
         public string Name
         {
             get

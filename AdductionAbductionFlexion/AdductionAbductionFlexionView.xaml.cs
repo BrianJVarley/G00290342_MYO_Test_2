@@ -10,6 +10,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -17,6 +18,10 @@ using Microsoft.WindowsAzure.MobileServices;
 using MyoTestv4.AdductionAbductionFlexion;
 using MyoSharp.Poses;
 using System.ComponentModel;
+using Mantin.Controls.Wpf;
+using Mantin.Controls.Wpf.Notification;
+using System.Drawing;
+
 
 
 namespace MyoTestv4
@@ -26,28 +31,43 @@ namespace MyoTestv4
     /// </summary>
     public partial class AdductionAbductionFlexionView : UserControl
     {
+
         IChannel channel;
         IHub hub;
 
+
         
 
+        
+        //Constants
         private double CALLIBRATION_FACTOR = 61.64;
         private double PITCH_MAX = -1.46;
         private double PITCH_MIN =  1.46;
 
-        private int myoCorrected = 0;
-
-        
-        
-        //pitch class field
+    
         private int pitch = 0;
-
-        private double degreeOutput;
-
         private string startingDegree;
         private string endDegree;
+        private int myoCorrected = 0;
+        private int repCntr = 0;
+        //variable that stores dynamic values for
+        //degree output of the device as the user
+        //moves there arm through the movement.
 
-       
+        //need to bind this variable to the "gauge"
+        //control so that degree readings update the 
+        //gauge in real time
+        public double degreeOutput { get; set; }
+
+        //link for the project the gauge control came from:
+        //https://github.com/JohanLarsson/GaugeBox
+        //In the GaugeBox project the gauge's marker is binded
+        //to a slider through a view model
+        //I need to adapt this solution to have the gauge control
+        //bound to my degrreOutput reading instead
+        //Tried simply setting the gauges Value="degreeOutput"
+        //but that had no effect
+
         
 
         #region Methods
@@ -55,9 +75,9 @@ namespace MyoTestv4
         public AdductionAbductionFlexionView()
         {
             InitializeComponent();
+            this.DataContext = new AdductionAbductionFlexionViewModel();
             this.Loaded += AdductionAbductionFlexionView_Loaded;
 
-           
 
 
            
@@ -81,8 +101,6 @@ namespace MyoTestv4
                         e.Myo.PoseChanged += Myo_PoseChanged;
 
                         e.Myo.OrientationDataAcquired += Myo_OrientationDataAcquired;
-
-                        
 
                     }));
                 };
@@ -117,21 +135,7 @@ namespace MyoTestv4
             MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("Are you sure?", "Leave exercise", System.Windows.MessageBoxButton.YesNo);
             if (messageBoxResult == MessageBoxResult.Yes)
             {
-                try
-                {
-
-                    var table = App.MobileService.GetTable<Item>();
-                    Item item = new Item { Repititions = "22", Date = " " + DateTime.Now.ToString(@"MM\/dd\/yyyy h\:mm tt"), User = HomeView.Name, Exercise = "Abduction flexion", Gender = HomeView.Gender };
-                    await App.MobileService.GetTable<Item>().InsertAsync(item);
-
-
-                }
-                catch (Exception ex)
-                {
-
-                    statusTbx.Text = "Commit fail: " + ex.Message;
-
-                }
+                await SubmitProgress();
 
 
 
@@ -142,6 +146,50 @@ namespace MyoTestv4
 
             }
 
+        }
+
+
+        //submit button click event
+        private async void submitBtn_Click(object sender, RoutedEventArgs e)
+        {
+            await SubmitProgress();
+
+        }
+
+        //method to submit user progress data to database
+        private async System.Threading.Tasks.Task SubmitProgress()
+        {
+            try
+            {
+
+                var table = App.MobileService.GetTable<Item>();
+                Item item = new Item { Repititions = repCntr.ToString(), Date = " " + DateTime.Now.ToString(@"MM\/dd\/yyyy h\:mm tt"), User = HomeView.Name, Exercise = "Abduction flexion", Gender = HomeView.Gender, Painful_Arc = startingDegree + " - " + endDegree};
+                await App.MobileService.GetTable<Item>().InsertAsync(item);
+               
+                new ToastPopUp("Submit Succeeded!", "Progress data submitted succesfully", NotificationType.Information)
+                {
+                    Background = new LinearGradientBrush(System.Windows.Media.Color.FromRgb(0, 189, 222), System.Windows.Media.Color.FromArgb(255, 10, 13, 248), 90),
+                    BorderBrush = new SolidColorBrush(System.Windows.Media.Color.FromRgb(0, 189, 222)),
+                    FontColor = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 255, 255))
+                }.Show();
+
+
+            }
+            catch (Exception ex)
+            {
+
+                
+                statusTbx.Text = "Commit fail: " + ex.Message;
+                new ToastPopUp("Submit Failed!", "Progress data did not submit correctly, please check you network connection", NotificationType.Information)
+                {
+                    Background = new LinearGradientBrush(System.Windows.Media.Color.FromRgb(0, 0, 51), System.Windows.Media.Color.FromArgb(255, 10, 13, 248), 90),
+                    BorderBrush = new SolidColorBrush(System.Windows.Media.Color.FromRgb(0, 0, 51)),
+                    FontColor = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255,255,255))
+                }.Show();
+
+
+
+            }
         }
 
         
@@ -158,12 +206,10 @@ namespace MyoTestv4
         {
             App.Current.Dispatcher.Invoke((Action)(() =>
             {
-                //need to measure abduction of arm from 0 to 180 degrees.
+               
                 poseStatusTbx.Text = "Pose " + e.Myo.Pose + "   detected" ;
 
-                
-
-          
+              
             }));    
         }
 
@@ -174,19 +220,33 @@ namespace MyoTestv4
         {
            App.Current.Dispatcher.Invoke((Action)(() =>
             {
+                
+                
 
-                //need to record degree reading when pose made that
-                //signifies begining of painful arc.
-                //then specify a second pose that signals the end of
-                //painful arc and store arc reading, eg 92dg - 108dg
+                //need to add a repitition count, to increment each time 
+                //180 degrees is reached.
 
+                //not ideal as 180 can be reached without completing a repition,
+                //for example user's arm could move from 90degrees to 180 degrees
+                //and still be counted as a valid repitition.
+
+                if(degreeOutput == 180)
+                {
+                    repCntr++;
+                    repCntTblk.Text = repCntr.ToString();
+
+                }
+                
 
                 //myo indicator must be facing down or degrees will be inverted.
                 degreeOutput = ((e.Pitch + PITCH_MIN) * CALLIBRATION_FACTOR);
 
                 degreeOfAbductionTbx.Text = "Degree: " + degreeOutput;
 
-                if (e.Myo.Pose == Pose.Fist)
+                //need to measure abduction of arm from 0 to 180 degrees.
+                //need to record degree reading when pose made that
+                //signifies begining of painful arc.
+                if (e.Myo.Pose == Pose.FingersSpread)
                 {
                     endDegree = string.Empty;
                     if (string.IsNullOrEmpty(startingDegree))
@@ -222,5 +282,7 @@ namespace MyoTestv4
 
      
         #endregion
+
+       
     }
 }
