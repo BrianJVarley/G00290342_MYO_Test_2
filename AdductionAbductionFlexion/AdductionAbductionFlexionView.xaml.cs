@@ -59,14 +59,7 @@ namespace MyoTestv4
         //gauge in real time
         public double degreeOutput { get; set; }
 
-        //link for the project the gauge control came from:
-        //https://github.com/JohanLarsson/GaugeBox
-        //In the GaugeBox project the gauge's marker is binded
-        //to a slider through a view model
-        //I need to adapt this solution to have the gauge control
-        //bound to my degrreOutput reading instead
-        //Tried simply setting the gauges Value="degreeOutput"
-        //but that had no effect
+        
 
         
 
@@ -163,7 +156,7 @@ namespace MyoTestv4
             {
 
                 var table = App.MobileService.GetTable<Item>();
-                Item item = new Item { Repititions = repCntr.ToString(), Date = " " + DateTime.Now.ToString(@"MM\/dd\/yyyy h\:mm tt"), User = HomeView.Name, Exercise = "Abduction flexion", Gender = HomeView.Gender, Painful_Arc = startingDegree + " - " + endDegree};
+                Item item = new Item { Repititions = repCntr.ToString(), Date = " " + DateTime.Now.ToString(@"MM\/dd\/yyyy h\:mm tt"), User = HomeView.Name, Exercise = "Abduction flexion", Gender = HomeView.Gender, Painful_Arc_Start = startingDegree, Painful_Arc_End = endDegree};
                 await App.MobileService.GetTable<Item>().InsertAsync(item);
                
                 new ToastPopUp("Submit Succeeded!", "Progress data submitted succesfully", NotificationType.Information)
@@ -224,11 +217,15 @@ namespace MyoTestv4
                 
 
                 //need to add a repitition count, to increment each time 
-                //180 degrees is reached.
+                //a repitition from 0 --> 180 degrees is completed.
 
-                //not ideal as 180 can be reached without completing a repition,
-                //for example user's arm could move from 90degrees to 180 degrees
+                //Current implementation not ideal as a repitition will counted,
+                //when the user has cmpleted a half repitition.
+                //For example user's arm could move from 90degrees to 180 degrees
                 //and still be counted as a valid repitition.
+
+                //Need to form a condition that only increments the counter when 
+                //the user has started at 0 degrees and ended at 180.
 
                 if(degreeOutput == 180)
                 {

@@ -17,7 +17,8 @@ namespace MyoTestv4.AdductionAbductionFlexion
         public string Repititions { get; set; }
         public string Exercise { get; set; }
         public string Date { get; set; }
-        public string Painful_Arc { get; set; }
+        public string Painful_Arc_Start { get; set; }
+        public string Painful_Arc_End { get; set; }
       
 
 
