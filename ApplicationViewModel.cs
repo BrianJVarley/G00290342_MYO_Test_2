@@ -24,7 +24,7 @@ namespace MyoTestv4
             // Add available pages
             PageViewModels.Add(new HomeViewModel());
             //PageViewModels.Add(new AdductionAbductionFlexionViewModel());
-            PageViewModels.Add(new AdductionAbductionFlexionViewModel(new MyoDeviceModel()));
+            PageViewModels.Add(new AdductionAbductionFlexionViewModel(new MyoDeviceModel(), new DatabaseModel()));
        
 
             // Set starting page

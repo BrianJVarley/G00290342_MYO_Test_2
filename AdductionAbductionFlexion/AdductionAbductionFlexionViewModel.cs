@@ -12,11 +12,17 @@ namespace MyoTestv4
     public class AdductionAbductionFlexionViewModel : ObservableObject, IPageViewModel, INotifyPropertyChanged 
     {
         private MyoDeviceModel _myoDevice;
+        private DatabaseModel _dataObj;
 
-        public AdductionAbductionFlexionViewModel(MyoDeviceModel device)
+        public event Action<string> DataChanged;
+
+             
+        public AdductionAbductionFlexionViewModel(MyoDeviceModel device, DatabaseModel progressData)
         {
             _myoDevice = device;
             _myoDevice.MyoDeviceStart();
+
+            _dataObj = progressData;
 
             _myoDevice.StatusUpdated += (update) => 
                 { 
@@ -35,6 +41,7 @@ namespace MyoTestv4
             {
                 DegreeStatus = update;
                 NotifyPropertyChanged("DegreeStatus");
+
             };
 
             _myoDevice.StartDegreeUpdated += (update) =>
@@ -49,17 +56,26 @@ namespace MyoTestv4
                 NotifyPropertyChanged("EndDegreeStatus");
             };
 
-        }
+            _dataObj.CommitUpdated += (update) =>
+            {
+                CommitStatus = update;
+                DataChanged("CommitStatus");
+            };
 
+
+
+        }
 
 
         public string CurrentStatus { get; set; }
         public string PoseStatus { get; set; }
-        public string DegreeStatus { get; set; }
+        public double DegreeStatus { get; set; }
         public string EndDegreeStatus { get; set; }
         public string StartDegreeStatus { get; set; }
+        public string CommitStatus { get; set; }
 
 
+        
 
        
         public string Name
@@ -82,5 +98,7 @@ namespace MyoTestv4
             }
         }
         #endregion
+
+        
     }
 }

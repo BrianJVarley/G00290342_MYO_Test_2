@@ -1,0 +1,25 @@
+Brian Varley - g00290342@gmit.ie
+====================================================================
+Coding References incorporated into this solution (GesturePhysio):
+
+https://github.com/tayfuzun/MyoSharp/blob/master/MyoSharp.ConsoleSample/OrientationExample.cs
+
+https://rachel53461.wordpress.com/2011/12/18/navigation-with-mvvm-2/
+
+https://github.com/JohanLarsson/GaugeBox
+
+http://mozouna.com/Blog/2013/06/20/facebook-authentication-with-wpf/
+
+https://www.thalmic.com/blog/category/developer/
+
+http://azure.microsoft.com/en-us/documentation/articles/mobile-services-windows-store-dotnet-get-started-data/
+
+https://developers.facebook.com/docs/reference/dialogs/oauth/
+
+http://stackoverflow.com/questions/2653096/why-use-mvvm
+
+
+
+
+
+

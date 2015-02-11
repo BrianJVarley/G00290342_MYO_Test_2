@@ -29,7 +29,7 @@ namespace MyoTestv4.AdductionAbductionFlexion
 
         public event Action<string> StatusUpdated;
         public event Action<string> PoseUpdated;
-        public event Action<string> DegreesUpdated;
+        public event Action<double> DegreesUpdated;
         public event Action<string> StartDegreeUpdated;
         public event Action<string> EndDegreeUpdated;
 
@@ -121,7 +121,7 @@ namespace MyoTestv4.AdductionAbductionFlexion
 
                 var handler = DegreesUpdated;
                 if (handler != null)
-                    handler("Degrees: " + degreeOutput);
+                    handler(degreeOutput);
 
                 //painful arc logic
                 if (e.Myo.Pose == Pose.WaveOut)

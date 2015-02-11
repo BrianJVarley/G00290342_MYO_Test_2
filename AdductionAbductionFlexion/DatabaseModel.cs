@@ -10,28 +10,41 @@ using Mantin.Controls.Wpf.Notification;
 
 namespace MyoTestv4.AdductionAbductionFlexion
 {
-    class DatabaseModel
+    public class DatabaseModel
     {
+        //custom events
+        public event Action<string> CommitUpdated;
+
+        //constants
+        private String ExerciseValue = "Adduction Flexion";
+        private String RepititionsValue = "21";
+        private String GenderValue = "Male";
+        private String UserValue = "Brian J";
+
 
         
-
         //method to push progress data to database
-        public async void pushData()
+        public async void pushData(String Painful_Arc_Start, String Painful_Arc_End)
         {
 
             var table = App.MobileService.GetTable<Item>();
-            Item item = new Item { Repititions = "22", Date = " " + DateTime.Now.ToString(@"MM\/dd\/yyyy h\:mm tt"), User = HomeView.Name, Exercise = "Abduction flexion", Gender = HomeView.Gender, Painful_Arc_Start = "5", Painful_Arc_End = "76"};
+            Item item = new Item { Repititions = RepititionsValue, Date = " " + DateTime.Now.ToString(@"MM\/dd\/yyyy h\:mm tt"), User = UserValue, Exercise = ExerciseValue, Gender = GenderValue, Painful_Arc_Start = "5", Painful_Arc_End = "76"};
             await App.MobileService.GetTable<Item>().InsertAsync(item);
 
-            new ToastPopUp("Submit Succeeded!", "Progress data submitted succesfully", NotificationType.Information)
-            {
-                Background = new LinearGradientBrush(System.Windows.Media.Color.FromRgb(0, 189, 222), System.Windows.Media.Color.FromArgb(255, 10, 13, 248), 90),
-                BorderBrush = new SolidColorBrush(System.Windows.Media.Color.FromRgb(0, 189, 222)),
-                FontColor = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 255, 255))
-            }.Show();
+            var handler = CommitUpdated;
+            if (handler != null)
+                handler("Data committed successfully!");
 
         }
 
+
+        //method to poll progress data from database
+        public async void pullData()
+        {
+
+            
+
+        }
        
 
 
