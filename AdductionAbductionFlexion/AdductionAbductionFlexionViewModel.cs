@@ -3,12 +3,65 @@ using MyoSharp.Communication;
 using MyoSharp.Device;
 using System;
 using System.Windows.Threading;
+using System.ComponentModel; 
+using System.Runtime.CompilerServices; 
+using MyoTestv4.AdductionAbductionFlexion;
 
 namespace MyoTestv4
 {
-    public class AdductionAbductionFlexionViewModel : ObservableObject, IPageViewModel
+    public class AdductionAbductionFlexionViewModel : ObservableObject, IPageViewModel, INotifyPropertyChanged 
     {
+        private MyoDeviceModel _myoDevice;
 
+        public AdductionAbductionFlexionViewModel(MyoDeviceModel device)
+        {
+            _myoDevice = device;
+            _myoDevice.MyoDeviceStart();
+
+            _myoDevice.StatusUpdated += (update) => 
+                { 
+                  CurrentStatus = update; 
+                  NotifyPropertyChanged("CurrentStatus");
+                };
+
+
+            _myoDevice.PoseUpdated += (update) =>
+            {
+                PoseStatus = update;
+                NotifyPropertyChanged("PoseStatus");
+            };
+
+            _myoDevice.DegreesUpdated += (update) =>
+            {
+                DegreeStatus = update;
+                NotifyPropertyChanged("DegreeStatus");
+            };
+
+            _myoDevice.StartDegreeUpdated += (update) =>
+            {
+                StartDegreeStatus = update;
+                NotifyPropertyChanged("StartDegreeStatus");
+            };
+
+            _myoDevice.EndDegreeUpdated += (update) =>
+            {
+                EndDegreeStatus = update;
+                NotifyPropertyChanged("EndDegreeStatus");
+            };
+
+        }
+
+
+
+        public string CurrentStatus { get; set; }
+        public string PoseStatus { get; set; }
+        public string DegreeStatus { get; set; }
+        public string EndDegreeStatus { get; set; }
+        public string StartDegreeStatus { get; set; }
+
+
+
+       
         public string Name
         {
             get
@@ -17,11 +70,17 @@ namespace MyoTestv4
             }
         }
 
+        #region INotifyPropertyChanged
+        public event PropertyChangedEventHandler PropertyChanged;
 
-       
-
- 
-
-
+        private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
+        {
+            var handler = PropertyChanged;
+            if (handler != null)
+            {
+                handler(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+        #endregion
     }
 }

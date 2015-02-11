@@ -1,4 +1,5 @@
 ﻿
+using MyoTestv4.AdductionAbductionFlexion;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,9 +23,9 @@ namespace MyoTestv4
         {
             // Add available pages
             PageViewModels.Add(new HomeViewModel());
-            PageViewModels.Add(new AdductionAbductionFlexionViewModel());
-            
-            
+            //PageViewModels.Add(new AdductionAbductionFlexionViewModel());
+            PageViewModels.Add(new AdductionAbductionFlexionViewModel(new MyoDeviceModel()));
+       
 
             // Set starting page
             CurrentPageViewModel = PageViewModels[0];

@@ -36,39 +36,6 @@ namespace MyoTestv4
             WBrowser.Navigate(new Uri("https://graph.facebook.com/oauth/authorize?client_id=559878724040104&redirect_uri=http://www.facebook.com/connect/login_success.html&type=user_agent&display=popup").AbsoluteUri);
             //619560198173727
 
-
-            // create a hub that will manage Myo devices for us
-            using (var channel = Channel.Create(ChannelDriver.Create(ChannelBridge.Create())))
-            using (var hub = Hub.Create(channel))
-            {
-                // listen for when the Myo connects
-                hub.MyoConnected += (sender, e) =>
-                {
-                    this.Dispatcher.Invoke((Action)(() =>
-                    {
-                        Console.WriteLine("Myo {0} has connected!", e.Myo.Handle);
-                        e.Myo.Vibrate(VibrationType.Short);
-
-                    }));
-                };
-
-                // listen for when the Myo disconnects
-                hub.MyoDisconnected += (sender, e) =>
-                {
-                    this.Dispatcher.Invoke((Action)(() =>
-                    {
-                        Console.WriteLine("Oh no! It looks like {0} arm Myo has disconnected!", e.Myo.Arm);
-                        e.Myo.Vibrate(VibrationType.Medium);
-                    }));
-                };
-
-                // start listening for Myo data
-                channel.StartListening();
-
-
-            }
-
-
         }
 
         private void WBrowser_OnNavigated(object sender, NavigationEventArgs e)

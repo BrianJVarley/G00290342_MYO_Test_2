@@ -22,7 +22,9 @@
                         <Button Content="{Binding Name}"
                                 Command="{Binding DataContext.ChangePageCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
                                 CommandParameter="{Binding }"
-                                Background="#00bdde" Foreground="White" Margin="10,20"/>
+                                Height="60"
+                                FontSize="20"
+                                Background="#00bdde" Foreground="White" Margin="30,30"/>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>

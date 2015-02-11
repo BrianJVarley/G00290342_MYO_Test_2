@@ -1,69 +1,76 @@
-﻿<UserControl x:Class="MyoTestv4.AdductionAbductionFlexionView"
+﻿<UserControl
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:gauges="clr-namespace:Gauges;assembly=Gauges"
              xmlns:local="clr-namespace:MyoTestv4"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" x:Class="MyoTestv4.AdductionAbductionFlexionView"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid HorizontalAlignment="Left" Height="280" Margin="10,10,0,0" VerticalAlignment="Top" Width="280">
+    <Viewbox>
+        <Grid HorizontalAlignment="Left" Height="280" Margin="10,10,0,0" VerticalAlignment="Top" Width="280">
 
 
-        <TextBox HorizontalAlignment="Left" x:Name="statusTbx" Background="#00bdde" Foreground="White" Height="41" Margin="151,29,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Connection Status:" Foreground="White" HorizontalAlignment="Left" Margin="151,4,0,0" VerticalAlignment="Top" Width="110"/>
-        <TextBox HorizontalAlignment="Left" x:Name="poseStatusTbx" Background="#00bdde" Foreground="White" Height="37" Margin="151,106,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Pose Status:" Foreground="White" HorizontalAlignment="Left" Margin="151,80,0,0" VerticalAlignment="Top" Width="110"/>
-        <TextBox HorizontalAlignment="Left" x:Name="degreeOfAbductionTbx" Background="#00bdde" Foreground="White" Height="42" Margin="150,178,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Abduction Degree:" Foreground="White" HorizontalAlignment="Left" Margin="151,152,0,0" VerticalAlignment="Top" Width="110"/>
-        <Label Content="Painful arc start:" Foreground="White" HorizontalAlignment="Left" Margin="10,134,0,0" VerticalAlignment="Top" Width="110"/>
-        <Image HorizontalAlignment="Left" Source="pack://application:,,,/Images/abduction_side_trans.png" x:Name="exerciseImage" Height="100" Margin="10,10,0,0" VerticalAlignment="Top" Width="100"/>
-        <TextBox HorizontalAlignment="Left" x:Name="painfulArcEndTbx" Background="#00bdde" Foreground="White" Height="40" Margin="10,230,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="110"/>
-        <Label Content="Painful arc end:" Foreground="White" HorizontalAlignment="Left" Margin="10,205,0,0" VerticalAlignment="Top" Width="110"/>
-        <TextBox HorizontalAlignment="Left" x:Name="painfulArcStartTbx" Background="#00bdde" Foreground="White" Height="40" Margin="10,160,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="110"/>
+            <TextBox HorizontalAlignment="Left" x:Name="statusTbx" Background="#00bdde" Foreground="White" Height="41" Margin="151,29,0,0" TextWrapping="Wrap" Text="{Binding CurrentStatus}" VerticalAlignment="Top" Width="120"/>
+            <Label Content="Connection Status:" Foreground="White" HorizontalAlignment="Left" Margin="151,4,0,0" VerticalAlignment="Top" Width="110"/>
+            <TextBox HorizontalAlignment="Left" x:Name="poseStatusTbx" Background="#00bdde" Foreground="White" Height="37" Margin="151,106,0,0" TextWrapping="Wrap" Text="{Binding PoseStatus}" VerticalAlignment="Top" Width="120"/>
+            <Label Content="Pose Status:" Foreground="White" HorizontalAlignment="Left" Margin="151,80,0,0" VerticalAlignment="Top" Width="110"/>
+            <TextBox HorizontalAlignment="Left" x:Name="degreeOfAbductionTbx" Background="#00bdde" Foreground="White" Height="42" Margin="150,178,0,0" TextWrapping="Wrap" Text="{Binding DegreeStatus}" VerticalAlignment="Top" Width="120"/>
+            <Label Content="Abduction Degree:" Foreground="White" HorizontalAlignment="Left" Margin="151,152,0,0" VerticalAlignment="Top" Width="110"/>
+            <Label Content="Painful arc start:" Foreground="White" HorizontalAlignment="Left" Margin="10,134,0,0" VerticalAlignment="Top" Width="110"/>
+            <Image HorizontalAlignment="Left" Source="pack://application:,,,/Images/abduction_side_trans.png" x:Name="exerciseImage" Height="100" Margin="10,10,0,0" VerticalAlignment="Top" Width="100"/>
+            <TextBox HorizontalAlignment="Left" x:Name="painfulArcEndTbx" Background="#00bdde" Foreground="White" Height="40" Margin="10,230,0,0" TextWrapping="Wrap" Text="{Binding EndDegreeStatus}" VerticalAlignment="Top" Width="110"/>
+            <Label Content="Painful arc end:" Foreground="White" HorizontalAlignment="Left" Margin="10,205,0,0" VerticalAlignment="Top" Width="110"/>
+            <TextBox HorizontalAlignment="Left" x:Name="painfulArcStartTbx" Background="#00bdde" Foreground="White" Height="40" Margin="10,160,0,0" TextWrapping="Wrap" Text="{Binding StartDegreeStatus}" VerticalAlignment="Top" Width="110"/>
 
-        <gauges:Gauge x:Name="Gauge"
-                              Grid.Row="0"
-                              Margin="13,18,134,134"
-                              HorizontalAlignment="Stretch"
-                              VerticalAlignment="Stretch"
-                              Marker="{Binding Marker}"
-                              Maximum="{Binding Max}"
-                              Minimum="{Binding Min}"
-                              Placement="{Binding Placement}"
-                              ShowLabels="{Binding ShowLabels}"
-                              ShowMajorTicks="{Binding ShowTicks}"
-                              ShowTrack="{Binding ShowTrack}"
-                              TickFrequency="{Binding TickFrequency}"
-                              Value="{Binding degreeOutput}" RenderTransformOrigin="0.5,0.5">
-            <gauges:Gauge.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="-89.868"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </gauges:Gauge.RenderTransform>
-            <gauges:Gauge.Background>
-                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                    <LinearGradientBrush.GradientStops>
-                        <GradientStopCollection>
-                            <GradientStop Offset="0.0" Color="Red" />
-                            <GradientStop Offset="0.10" Color="Red" />
-                            <GradientStop Offset="0.10" Color="Green" />
-                            <GradientStop Offset="0.90" Color="Green" />
-                            <GradientStop Offset="0.90" Color="Red" />
-                            <GradientStop Offset="1.0" Color="Red" />
-                        </GradientStopCollection>
-                    </LinearGradientBrush.GradientStops>
-                </LinearGradientBrush>
-            </gauges:Gauge.Background>
-        </gauges:Gauge>
+            <gauges:Gauge x:Name="Gauge"
+				Grid.Row="0"
+				Margin="7,3,140,149"
+				HorizontalAlignment="Stretch"
+				VerticalAlignment="Stretch"
+				Marker="{Binding Marker}"
+				Maximum="{Binding Max}"
+				Minimum="{Binding Min}"
+				Placement="{Binding Placement}"
+				ShowLabels="{Binding ShowLabels}"
+				ShowMajorTicks="{Binding ShowTicks}"
+				ShowTrack="{Binding ShowTrack}"
+				TickFrequency="5"
+				Value="60" RenderTransformOrigin="0.5,0.5">
+                <gauges:Gauge.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="-89.868"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </gauges:Gauge.RenderTransform>
+                <gauges:Gauge.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                        <LinearGradientBrush.GradientStops>
+                            <GradientStopCollection>
+                                <GradientStop Offset="0.0" Color="Red" />
+                                <GradientStop Offset="0.10" Color="Red" />
+                                <GradientStop Offset="0.10" Color="Green" />
+                                <GradientStop Offset="0.90" Color="Green" />
+                                <GradientStop Offset="0.90" Color="Red" />
+                                <GradientStop Offset="1.0" Color="Red" />
+                            </GradientStopCollection>
+                        </LinearGradientBrush.GradientStops>
+                    </LinearGradientBrush>
+                </gauges:Gauge.Background>
+            </gauges:Gauge>
+            
+       
+            <TextBlock HorizontalAlignment="Left" x:Name="repCntTblk" Margin="85,9,0,0" TextWrapping="Wrap" Text="" FontSize="38" Foreground="#00bdde" VerticalAlignment="Top" Width="48" Height="41"/>
+            <Button Content="Submit" x:Name="submitBtn" IsDefault="True" IsCancel="True" HorizontalAlignment="Left"  Background="#00bdde" Foreground="White" Margin="175,240,0,0" VerticalAlignment="Top" Width="75"/>
 
 
 
-    </Grid>
 
+        </Grid>
+    </Viewbox>
 
 
 
