@@ -64,7 +64,7 @@
             
        
             <TextBlock HorizontalAlignment="Left" x:Name="repCntTblk" Margin="0,4,0,0" TextWrapping="Wrap" Text="" FontSize="38" Foreground="#00bdde" VerticalAlignment="Top" Width="34" Height="41"/>
-            <Button Content="Submit" x:Name="submitBtn" IsDefault="True" IsCancel="True" HorizontalAlignment="Left"  Background="#00bdde" Foreground="White" Margin="175,240,0,0" VerticalAlignment="Top" Width="75"/>
+            <Button Content="Submit" x:Name="submitBtn" Command="{Binding Path=DataSubmitCommand}" IsDefault="True" IsCancel="True" HorizontalAlignment="Left"  Background="#00bdde" Foreground="White" Margin="175,240,0,0" VerticalAlignment="Top" Width="75"/>
 
 
 

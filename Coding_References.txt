@@ -18,6 +18,8 @@ https://developers.facebook.com/docs/reference/dialogs/oauth/
 
 http://stackoverflow.com/questions/2653096/why-use-mvvm
 
+https://github.com/tb2johhm/MMVVM/blob/master/Commands/RelayCommand.cs
+
 
 
 

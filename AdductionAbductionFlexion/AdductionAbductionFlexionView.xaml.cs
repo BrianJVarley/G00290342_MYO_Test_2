@@ -67,13 +67,8 @@ namespace MyoTestv4
         public void window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
 
-            DatabaseModel dataObj = new DatabaseModel();
-            //dataObj.pushData(Painful_Arc_Start,Painful_Arc_End);
 
-            
-
-
-            MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("Are you sure?", "Leave exercise", System.Windows.MessageBoxButton.YesNo);
+            MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("Are you sure?", "Leave Application", System.Windows.MessageBoxButton.YesNo);
             if (messageBoxResult == MessageBoxResult.Yes)
             {
                 e.Cancel = false;

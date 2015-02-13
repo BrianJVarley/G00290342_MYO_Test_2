@@ -22,12 +22,15 @@ namespace MyoTestv4
     /// </summary>
     public partial class HomeView : UserControl
     {
+
         private FacebookClient FBClient;
         private FacebookClient fbC;
         public static string AccessToken { get; set; }
         public static string Name;
         public static string Gender;
         public static string Link;
+
+        
 
 
         public HomeView()
@@ -43,6 +46,7 @@ namespace MyoTestv4
 
             if (e.Uri.ToString().StartsWith("http://www.facebook.com/connect/login_success.html"))
             {
+
                 AccessToken = e.Uri.Fragment.Split('&')[0].Replace("#access_token=", "");
                 FBClient = new FacebookClient(AccessToken);
 
@@ -51,7 +55,7 @@ namespace MyoTestv4
 
                 fbC = FBClient;
                 dynamic me = FBClient.Get("Me");
-           
+
                 TBInfos.Text = "Name : " + (me.name ?? (object)string.Empty).ToString() + "\n\r"
                                + "Gender : " + (me.gender ?? (object)string.Empty).ToString() + "\n\r"
                                + "Link : " + (me.link ?? (object)string.Empty).ToString();
@@ -60,7 +64,7 @@ namespace MyoTestv4
                 Name = me.name;
                 Gender = me.gender;
                 Link = me.link;
-      
+
             }
         }
     }

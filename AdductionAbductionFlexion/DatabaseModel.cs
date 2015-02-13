@@ -12,39 +12,37 @@ namespace MyoTestv4.AdductionAbductionFlexion
 {
     public class DatabaseModel
     {
+        
+        //constants
+        const String ExerciseValue = "Adduction Flexion";
+        const String RepititionsValue = "21";
+        const String GenderValue = "Male";
+        const String UserValue = "Brian J";
+
         //custom events
         public event Action<string> CommitUpdated;
 
-        //constants
-        private String ExerciseValue = "Adduction Flexion";
-        private String RepititionsValue = "21";
-        private String GenderValue = "Male";
-        private String UserValue = "Brian J";
 
 
         
         //method to push progress data to database
-        public async void pushData(String Painful_Arc_Start, String Painful_Arc_End)
+        public Task SubmitChanges(String StartDegreeStatus, String EndDegreeStatus)
         {
-
             var table = App.MobileService.GetTable<Item>();
-            Item item = new Item { Repititions = RepititionsValue, Date = " " + DateTime.Now.ToString(@"MM\/dd\/yyyy h\:mm tt"), User = UserValue, Exercise = ExerciseValue, Gender = GenderValue, Painful_Arc_Start = "5", Painful_Arc_End = "76"};
-            await App.MobileService.GetTable<Item>().InsertAsync(item);
-
-            var handler = CommitUpdated;
-            if (handler != null)
-                handler("Data committed successfully!");
-
+            Item item = new Item { Repititions = RepititionsValue, Date = " " + DateTime.Now.ToString(@"MM\/dd\/yyyy h\:mm tt"), User = UserValue, Exercise = ExerciseValue, Gender = GenderValue, Painful_Arc_Start = StartDegreeStatus, Painful_Arc_End = EndDegreeStatus };
+            return table.InsertAsync(item);
         }
 
 
+        /*
         //method to poll progress data from database
-        public async void pullData()
+        public Task PullChanges()
         {
 
             
 
         }
+        */
        
 
 

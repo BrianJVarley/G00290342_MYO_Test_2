@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace MyoTestv4.Tests
 {
     [TestFixture]
-    public class Test1
+    public class VMTests
     {
         [Test]
         public void TestAppVM()
@@ -17,6 +17,16 @@ namespace MyoTestv4.Tests
             HomeViewModel vm = new HomeViewModel();
             string actualName = vm.Name;
             Assert.AreEqual("Home Page", actualName);
+
+
+        }
+
+
+        [Test]
+        public void TestAdductionAbductionFlexionViewModel()
+        {
+
+             
 
 
         }
