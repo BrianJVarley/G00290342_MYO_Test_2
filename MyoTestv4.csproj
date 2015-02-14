@@ -118,7 +118,7 @@
       <DependentUpon>AdductionAbductionFlexionView.xaml</DependentUpon>
     </Compile>
     <Compile Include="AdductionAbductionFlexion\AdductionAbductionFlexionViewModel.cs" />
-    <Compile Include="Home\UserLogin.cs" />
+    <Compile Include="Home\UserLoginModel.cs" />
     <Compile Include="Internal\PlatformInvocation.cs" />
     <Compile Include="IPageViewModel.cs" />
     <Compile Include="Tests\VMTests.cs" />

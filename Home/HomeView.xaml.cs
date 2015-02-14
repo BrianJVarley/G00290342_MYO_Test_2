@@ -1,6 +1,7 @@
 ﻿using Facebook;
 using MyoSharp.Communication;
 using MyoSharp.Device;
+using MyoTestv4.Home;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,6 +39,7 @@ namespace MyoTestv4
             InitializeComponent();
             WBrowser.Navigate(new Uri("https://graph.facebook.com/oauth/authorize?client_id=559878724040104&redirect_uri=http://www.facebook.com/connect/login_success.html&type=user_agent&display=popup").AbsoluteUri);
             //619560198173727
+            this.DataContext = new HomeViewModel(new UserLoginModel()); 
 
         }
 

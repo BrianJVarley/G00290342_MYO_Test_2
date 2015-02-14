@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using MyoTestv4.Home;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,7 @@ namespace MyoTestv4.Tests
         public void TestAppVM()
         {
 
-            HomeViewModel vm = new HomeViewModel();
+            HomeViewModel vm = new HomeViewModel(new UserLoginModel());
             string actualName = vm.Name;
             Assert.AreEqual("Home Page", actualName);
 

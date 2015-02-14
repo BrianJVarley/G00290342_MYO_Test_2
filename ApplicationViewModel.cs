@@ -1,5 +1,6 @@
 ﻿
 using MyoTestv4.AdductionAbductionFlexion;
+using MyoTestv4.Home;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,8 +23,7 @@ namespace MyoTestv4
         public ApplicationViewModel()
         {
             // Add available pages
-            PageViewModels.Add(new HomeViewModel());
-            //PageViewModels.Add(new AdductionAbductionFlexionViewModel());
+            PageViewModels.Add(new HomeViewModel(new UserLoginModel()));
             PageViewModels.Add(new AdductionAbductionFlexionViewModel(new MyoDeviceModel(), new DatabaseModel()));
        
 
