@@ -25,10 +25,10 @@ namespace MyoTestv4
 
         private FacebookClient FBClient;
         private FacebookClient fbC;
-        public static string AccessToken { get; set; }
-        public static string Name;
-        public static string Gender;
-        public static string Link;
+        public string AccessToken { get; set; }
+        public string Name;
+        public string Gender;
+        public string Link;
 
         
 
