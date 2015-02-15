@@ -31,6 +31,7 @@ namespace MyoTestv4
 
         #region Methods
 
+        //constructor
         public AdductionAbductionFlexionView()
         {
             InitializeComponent();
@@ -50,12 +51,8 @@ namespace MyoTestv4
             
             };
 
-
         }
         
-           
-            
-
         void AdductionAbductionFlexionView_Loaded(object sender, RoutedEventArgs e)
         {
             Window window = Window.GetWindow(this);
@@ -80,13 +77,7 @@ namespace MyoTestv4
 
         }
 
-        
-
-        
-
         #endregion
-
-
-        
+     
     }
 }

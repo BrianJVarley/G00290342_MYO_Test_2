@@ -24,8 +24,8 @@ namespace MyoTestv4.AdductionAbductionFlexion
     public class MyoDeviceModel
     {
 
-        IChannel channel;
-        IHub hub;
+        private IChannel channel;
+        private IHub hub;
 
         public event Action<string> StatusUpdated;
         public event Action<string> PoseUpdated;
@@ -33,14 +33,10 @@ namespace MyoTestv4.AdductionAbductionFlexion
         public event Action<string> StartDegreeUpdated;
         public event Action<string> EndDegreeUpdated;
 
-
-        
-
-
         //Constants
-        private double CALLIBRATION_FACTOR = 61.64;
-        private double PITCH_MAX = -1.46;
-        private double PITCH_MIN = 1.46;
+        private const double CALLIBRATION_FACTOR = 61.64;
+        private const double PITCH_MAX = -1.46;
+        private const double PITCH_MIN = 1.46;
 
 
         private int myoCorrected = 0;
@@ -52,21 +48,21 @@ namespace MyoTestv4.AdductionAbductionFlexion
 
         #region Methods
 
-        public void MyoDeviceStart(){
-
+        public void MyoDeviceStart()
+        {
             // create a hub that will manage Myo devices for us
-            channel = Channel.Create(ChannelDriver.Create(ChannelBridge.Create()));
+            this.channel = Channel.Create(ChannelDriver.Create(ChannelBridge.Create()));
             hub = Hub.Create(channel);
             {
-
-                // listen for when the Myo connects
-                hub.MyoConnected += (sender, e) =>
+               // listen for when the Myo connects
+                this.hub.MyoConnected += (sender, e) =>
                 {
-
                     var handler = StatusUpdated;
                     if (handler != null)
+                    {
                         handler("Myo Device Connected!");
-
+                    }
+                        
                     e.Myo.Vibrate(VibrationType.Short);
 
                     // unlock the Myo so that it doesn't keep locking between our poses
@@ -84,7 +80,9 @@ namespace MyoTestv4.AdductionAbductionFlexion
 
                     var handler = StatusUpdated;
                     if (handler != null)
+                    {
                         handler("Myo Device Disconnected!");
+                    }
                     e.Myo.Vibrate(VibrationType.Medium);
                     e.Myo.OrientationDataAcquired -= Myo_OrientationDataAcquired;
                     e.Myo.PoseChanged -= Myo_PoseChanged;
@@ -99,29 +97,27 @@ namespace MyoTestv4.AdductionAbductionFlexion
 
 
         private void Myo_PoseChanged(object sender, PoseEventArgs e)
-        {
-           
+        {   
                 var handler = PoseUpdated;
                 if (handler != null)
+                {
                     handler("Pose: " + e.Myo.Pose);
+                }
 
                 e.Myo.Vibrate(VibrationType.Short);
-
         }
 
 
-
-
         private void Myo_OrientationDataAcquired(object sender, OrientationDataEventArgs e)
-        {
-            
-               
+        { 
                 //myo indicator must be facing down or degrees will be inverted.
                 degreeOutput = ((e.Pitch + PITCH_MIN) * CALLIBRATION_FACTOR);
 
                 var handler = DegreesUpdated;
                 if (handler != null)
+                {
                     handler(degreeOutput);
+                }
 
                 //painful arc logic
                 if (e.Myo.Pose == Pose.WaveOut)
@@ -133,7 +129,10 @@ namespace MyoTestv4.AdductionAbductionFlexion
                     }
                     var handlerArcStart = StartDegreeUpdated;
                     if (handlerArcStart != null)
+                    {
                         handlerArcStart(startingDegree);
+                    }
+                       
 
                 }
                 
@@ -144,24 +143,19 @@ namespace MyoTestv4.AdductionAbductionFlexion
                     {
                         endDegree = "end: " + degreeOutput;
                     }
-                    var handlerArcEnd = EndDegreeUpdated; // copy to local
+                    var handlerArcEnd = EndDegreeUpdated; 
                     if (handlerArcEnd != null)
+                    {
                         handlerArcEnd(endDegree);
+                    }
                     
                 }
-
                 
         }
 
-
     }
          
-       
-
 }
-
-
-  
 
  #endregion
 

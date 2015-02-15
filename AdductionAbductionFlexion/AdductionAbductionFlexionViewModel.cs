@@ -21,7 +21,7 @@ namespace MyoTestv4
         public AdductionAbductionFlexionViewModel(MyoDeviceModel device, DatabaseModel progressData)
         {
 
-            DataSubmitCommand = new RelayCommand(SaveChangesToPersistence);
+            DataSubmitCommand = new RelayCommand (this.SaveChangesToPersistence);
 
             _myoDevice = device;
             _myoDevice.MyoDeviceStart();
@@ -30,34 +30,28 @@ namespace MyoTestv4
 
             _myoDevice.StatusUpdated += (update) =>
             {
-                CurrentStatus = update;
-                
+                CurrentStatus = update;   
             };
 
 
             _myoDevice.PoseUpdated += (update) =>
             {
-                PoseStatus = update;
-                
+                PoseStatus = update;   
             };
 
             _myoDevice.DegreesUpdated += (update) =>
             {
                 DegreeStatus = update;
-              
-
             };
 
             _myoDevice.StartDegreeUpdated += (update) =>
             {
-                StartDegreeStatus = update;
-                
+                StartDegreeStatus = update;    
             };
 
             _myoDevice.EndDegreeUpdated += (update) =>
             {
-                EndDegreeStatus = update;
-                
+                EndDegreeStatus = update;    
             };
         }
 

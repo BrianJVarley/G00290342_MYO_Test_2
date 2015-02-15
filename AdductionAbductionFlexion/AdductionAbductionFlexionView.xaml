@@ -12,21 +12,19 @@
         <Grid HorizontalAlignment="Left" Height="280" Margin="10,10,0,0" VerticalAlignment="Top" Width="280">
 
 
-            <TextBox HorizontalAlignment="Left" x:Name="statusTbx" Background="#00bdde" Foreground="White" Height="41" Margin="151,29,0,0" TextWrapping="Wrap" Text="{Binding CurrentStatus}" VerticalAlignment="Top" Width="120"/>
-            <Label Content="Connection Status:" Foreground="White" HorizontalAlignment="Left" Margin="151,4,0,0" VerticalAlignment="Top" Width="110"/>
-            <TextBox HorizontalAlignment="Left" x:Name="poseStatusTbx" Background="#00bdde" Foreground="White" Height="37" Margin="151,106,0,0" TextWrapping="Wrap" Text="{Binding PoseStatus}" VerticalAlignment="Top" Width="120"/>
-            <Label Content="Pose Status:" Foreground="White" HorizontalAlignment="Left" Margin="151,80,0,0" VerticalAlignment="Top" Width="110"/>
-            <TextBox HorizontalAlignment="Left" x:Name="degreeOfAbductionTbx" Background="#00bdde" Foreground="White" Height="42" Margin="150,178,0,0" TextWrapping="Wrap" Text="{Binding DegreeStatus}" VerticalAlignment="Top" Width="120"/>
-            <Label Content="Abduction Degree:" Foreground="White" HorizontalAlignment="Left" Margin="151,152,0,0" VerticalAlignment="Top" Width="110"/>
-            <Label Content="Painful arc start:" Foreground="White" HorizontalAlignment="Left" Margin="10,134,0,0" VerticalAlignment="Top" Width="110"/>
+            <TextBox HorizontalAlignment="Left" x:Name="statusTbx" Background="#141c28" Foreground="White" Height="25" Margin="140,10,0,0" TextWrapping="Wrap" Text="{Binding CurrentStatus}" VerticalAlignment="Top" Width="120"/>
+            <TextBox HorizontalAlignment="Left" x:Name="poseStatusTbx" Background="#141c28" Foreground="White" Height="24" Margin="140,48,0,0" TextWrapping="Wrap" Text="{Binding PoseStatus}" VerticalAlignment="Top" Width="120"/>
+            <TextBox HorizontalAlignment="Left" x:Name="degreeOfAbductionTbx" Background="#141c28" Foreground="White" Height="22" Margin="108,205,0,0" TextWrapping="Wrap" Text="{Binding DegreeStatus}" VerticalAlignment="Top" Width="110"/>
+            <Label Content="Degrees:" Foreground="#00bdde" HorizontalAlignment="Left" Margin="10,200,0,0" VerticalAlignment="Top" Width="98"/>
+            <Label Content="Painful arc start:" Foreground="#00bdde" HorizontalAlignment="Left" Margin="10,151,0,0" VerticalAlignment="Top" Width="110"/>
             <Image HorizontalAlignment="Left" Source="pack://application:,,,/Images/abduction_side_trans.png" x:Name="exerciseImage" Height="100" Margin="10,10,0,0" VerticalAlignment="Top" Width="100"/>
-            <TextBox HorizontalAlignment="Left" x:Name="painfulArcEndTbx" Background="#00bdde" Foreground="White" Height="40" Margin="10,230,0,0" TextWrapping="Wrap" Text="{Binding EndDegreeStatus}" VerticalAlignment="Top" Width="110"/>
-            <Label Content="Painful arc end:" Foreground="White" HorizontalAlignment="Left" Margin="10,205,0,0" VerticalAlignment="Top" Width="110"/>
-            <TextBox HorizontalAlignment="Left" x:Name="painfulArcStartTbx" Background="#00bdde" Foreground="White" Height="40" Margin="10,160,0,0" TextWrapping="Wrap" Text="{Binding StartDegreeStatus}" VerticalAlignment="Top" Width="110"/>
+            <TextBox HorizontalAlignment="Left" x:Name="painfulArcEndTbx" Background="#141c28" Foreground="White" Height="22" Margin="108,178,0,0" TextWrapping="Wrap" Text="{Binding EndDegreeStatus}" VerticalAlignment="Top" Width="110"/>
+            <Label Content="Painful arc end:" Foreground="#00bdde" HorizontalAlignment="Left" Margin="10,174,0,0" VerticalAlignment="Top" Width="110"/>
+            <TextBox HorizontalAlignment="Left" x:Name="painfulArcStartTbx" Background="#141c28" Foreground="White" Height="23" Margin="108,151,0,0" TextWrapping="Wrap" Text="{Binding StartDegreeStatus}" VerticalAlignment="Top" Width="110"/>
 
             <gauges:Gauge x:Name="Gauge"
 				Grid.Row="0"
-				Margin="84,7,141,142"
+				Margin="84,7,141,137"
 				HorizontalAlignment="Stretch"
 				VerticalAlignment="Stretch"
 				Marker="Triangle"
@@ -61,10 +59,10 @@
                     </LinearGradientBrush>
                 </gauges:Gauge.Background>
             </gauges:Gauge>
-            
-       
+
+
             <TextBlock HorizontalAlignment="Left" x:Name="repCntTblk" Margin="0,4,0,0" TextWrapping="Wrap" Text="" FontSize="38" Foreground="#00bdde" VerticalAlignment="Top" Width="34" Height="41"/>
-            <Button Content="Submit" x:Name="submitBtn" Command="{Binding Path=DataSubmitCommand}" IsDefault="True" IsCancel="True" HorizontalAlignment="Left"  Background="#00bdde" Foreground="White" Margin="175,240,0,0" VerticalAlignment="Top" Width="75"/>
+            <Button Content="Submit" x:Name="submitBtn" Command="{Binding Path=DataSubmitCommand}" IsDefault="True" IsCancel="True" HorizontalAlignment="Left"  Background="#00bdde" Foreground="White" Margin="122,240,0,0" VerticalAlignment="Top" Width="75"/>
 
 
 
