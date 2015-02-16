@@ -20,6 +20,8 @@ http://stackoverflow.com/questions/2653096/why-use-mvvm
 
 https://github.com/tb2johhm/MMVVM/blob/master/Commands/RelayCommand.cs
 
+http://stackoverflow.com/questions/20295118/how-to-implement-a-booltovisibilityconverter
+
 
 
 

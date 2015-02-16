@@ -14,6 +14,7 @@ namespace MyoTestv4
         private MyoDeviceModel _myoDevice;
         private DatabaseModel _dataObj;
 
+        
 
         public event Action<string> DataChanged;
 

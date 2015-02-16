@@ -125,7 +125,7 @@ namespace MyoTestv4.AdductionAbductionFlexion
                     endDegree = string.Empty;
                     if (string.IsNullOrEmpty(startingDegree))
                     {
-                        startingDegree = "start: " + degreeOutput;
+                        startingDegree = degreeOutput.ToString();
                     }
                     var handlerArcStart = StartDegreeUpdated;
                     if (handlerArcStart != null)
@@ -141,7 +141,7 @@ namespace MyoTestv4.AdductionAbductionFlexion
                     startingDegree = string.Empty;
                     if (string.IsNullOrEmpty(endDegree))
                     {
-                        endDegree = "end: " + degreeOutput;
+                        endDegree = degreeOutput.ToString();
                     }
                     var handlerArcEnd = EndDegreeUpdated; 
                     if (handlerArcEnd != null)
