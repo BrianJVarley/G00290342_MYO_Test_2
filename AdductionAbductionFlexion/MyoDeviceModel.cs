@@ -60,7 +60,7 @@ namespace MyoTestv4.AdductionAbductionFlexion
                     var handler = StatusUpdated;
                     if (handler != null)
                     {
-                        handler("Myo Device Connected!");
+                        handler("Connected!");
                     }
                         
                     e.Myo.Vibrate(VibrationType.Short);
@@ -81,7 +81,7 @@ namespace MyoTestv4.AdductionAbductionFlexion
                     var handler = StatusUpdated;
                     if (handler != null)
                     {
-                        handler("Myo Device Disconnected!");
+                        handler("Disconnected!");
                     }
                     e.Myo.Vibrate(VibrationType.Medium);
                     e.Myo.OrientationDataAcquired -= Myo_OrientationDataAcquired;
