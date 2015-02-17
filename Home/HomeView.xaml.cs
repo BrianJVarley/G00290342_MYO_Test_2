@@ -31,46 +31,21 @@ namespace MyoTestv4
         public string Gender;
         public string Link;
 
-        
 
+        private HomeViewModel ViewModel { get; set; }
 
         public HomeView()
         {
             InitializeComponent();
-            WBrowser.Navigate(new Uri("https://graph.facebook.com/oauth/authorize?client_id=559878724040104&redirect_uri=http://www.facebook.com/connect/login_success.html&type=user_agent&display=popup").AbsoluteUri);
-            //619560198173727
             this.DataContext = new HomeViewModel(new UserLoginModel()); 
+            WBrowser.Navigate(new Uri("https://graph.facebook.com/oauth/authorize?client_id=559878724040104&redirect_uri=http://www.facebook.com/connect/login_success.html&type=user_agent&display=popup").AbsoluteUri);
+            
 
         }
 
         private void WBrowser_OnNavigated(object sender, NavigationEventArgs e)
         {
-
-            if (e.Uri.ToString().StartsWith("http://www.facebook.com/connect/login_success.html"))
-            {
-
-                AccessToken = e.Uri.Fragment.Split('&')[0].Replace("#access_token=", "");
-                FBClient = new FacebookClient(AccessToken);
-
-                WBrowser.Visibility = Visibility.Hidden;
-                TBInfos.Visibility = Visibility.Visible;
-
-                fbC = FBClient;
-                dynamic me = FBClient.Get("Me");
-
-                TBInfos.Text = "Name : " + (me.name ?? (object)string.Empty).ToString() + "\n\r"
-                               + "Gender : " + (me.gender ?? (object)string.Empty).ToString() + "\n\r"
-                               + "Link : " + (me.link ?? (object)string.Empty).ToString();
-
-                //set profile fields to string variables
-                Name = me.name;
-                Gender = me.gender;
-                Link = me.link;
-
-                
-
-
-            }
+            this.ViewModel.initLogin(e); 
         }
     }
 }
