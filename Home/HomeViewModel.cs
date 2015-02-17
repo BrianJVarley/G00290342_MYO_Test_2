@@ -57,14 +57,6 @@ namespace MyoTestv4
 
                 LoggedIn = true;
 
-                //neeed to use a BooleanToVisibilityConverter 
-
-                /*
-                WBrowser.Visibility = Visibility.Hidden;
-                TBInfos.Visibility = Visibility.Visible;
-                 */
-
-                LoggedIn = true;
 
                 this._loginObj.FbC = this._loginObj.FbClient;
 
