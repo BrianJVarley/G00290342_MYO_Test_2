@@ -110,6 +110,8 @@
     <Compile Include="ApplicationViewModel.cs" />
     <Compile Include="Helper Classes\ObservableObject.cs" />
     <Compile Include="Helper Classes\RelayCommand.cs" />
+    <Compile Include="Home\BoolToNonVisibilityConverter.cs" />
+    <Compile Include="Home\BoolToVisibilityConverter.cs" />
     <Compile Include="Home\HomeView.xaml.cs">
       <DependentUpon>HomeView.xaml</DependentUpon>
     </Compile>

@@ -67,6 +67,9 @@ namespace MyoTestv4
                 Gender = me.gender;
                 Link = me.link;
 
+                
+
+
             }
         }
     }

@@ -23,6 +23,12 @@ namespace MyoTestv4
         {
 
             _loginObj = login;
+
+            //need to invoke initLogin() here
+            //initLogin(e);
+           
+
+            
         
         }
 
@@ -50,6 +56,8 @@ namespace MyoTestv4
                 this._loginObj.FbClient = new FacebookClient(this._loginObj.AccessToken);
 
                 LoggedIn = true;
+
+                //neeed to use a BooleanToVisibilityConverter 
 
                 /*
                 WBrowser.Visibility = Visibility.Hidden;
