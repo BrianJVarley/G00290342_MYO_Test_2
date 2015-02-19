@@ -29,7 +29,7 @@ namespace MyoTestv4.Home
             // Do the conversion from visibility to bool
             Visibility visibility = (Visibility)value;
 
-            if (visibility == Visibility.Visible)
+            if (visibility == Visibility.Hidden)
                 return true;
             else
                 return false;
