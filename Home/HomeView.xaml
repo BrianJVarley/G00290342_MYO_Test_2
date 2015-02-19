@@ -8,14 +8,14 @@
              d:DesignHeight="300" d:DesignWidth="300">
 
     <UserControl.Resources>
-        <l:BoolToNonVisibilityConverter x:Key="BoolToVisibilityConverter" />
+        <l:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
         <l:BoolToNonVisibilityConverter x:Key="BoolToNonVisibilityConverter" />
     </UserControl.Resources>
 
 
     <Grid>
-        <WebBrowser Name="WBrowser" Navigated="WBrowser_OnNavigated" Visibility="{Binding LoggedIn, Converter={StaticResource BoolToVisibilityConverter}}" />
-        <TextBlock TextWrapping="Wrap" Background="#00bdde" Foreground="White" FontSize="25" Visibility="{Binding LoggedIn, Converter={StaticResource BoolToNonVisibilityConverter}}"  FontFamily="Segoe UI Light" Name="TBInfos" />
+        <WebBrowser Name="WBrowser" Navigated="WBrowser_OnNavigated" Visibility="{Binding LoggedIn, Converter={StaticResource BoolToNonVisibilityConverter}}" />
+        <TextBlock TextWrapping="Wrap" Background="#00bdde" Text="{Binding UserName}" Foreground="White" FontSize="25" Visibility="{Binding LoggedIn, Converter={StaticResource BoolToVisibilityConverter}}"  FontFamily="Segoe UI Light" Name="TBInfos" />
         <Image HorizontalAlignment="Left" x:Name="imgProfile" Height="100" Margin="190,10,0,0" VerticalAlignment="Top" Width="100"/>
 
     </Grid>
