@@ -8,8 +8,8 @@
              d:DesignHeight="300" d:DesignWidth="300">
 
     <UserControl.Resources>
-        <l:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
-        <l:BoolToVisibilityConverter x:Key="BoolToNonVisibilityConverter" />
+        <l:BoolToNonVisibilityConverter x:Key="BoolToVisibilityConverter" />
+        <l:BoolToNonVisibilityConverter x:Key="BoolToNonVisibilityConverter" />
     </UserControl.Resources>
 
 

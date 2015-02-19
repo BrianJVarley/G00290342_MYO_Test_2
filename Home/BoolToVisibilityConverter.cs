@@ -13,7 +13,7 @@ namespace MyoTestv4.Home
     {
 
         public object Convert(object value, Type targetType,
-        object parameter, CultureInfo culture)
+         object parameter, CultureInfo culture)
         {
             // Do the conversion from bool to visibility
             bool bValue = (bool)value;
@@ -29,7 +29,7 @@ namespace MyoTestv4.Home
             // Do the conversion from visibility to bool
             Visibility visibility = (Visibility)value;
 
-            if (visibility == Visibility.Visible)
+            if (visibility == Visibility.Hidden)
                 return true;
             else
                 return false;
@@ -38,3 +38,4 @@ namespace MyoTestv4.Home
 
     }
 }
+
