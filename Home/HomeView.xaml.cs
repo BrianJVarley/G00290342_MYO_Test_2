@@ -24,20 +24,14 @@ namespace MyoTestv4
     public partial class HomeView : UserControl
     {
 
-        private FacebookClient FBClient;
-        private FacebookClient fbC;
-        public string AccessToken { get; set; }
-        public string Name;
-        public string Gender;
-        public string Link;
-
 
         private HomeViewModel ViewModel { get; set; }
 
         public HomeView()
         {
             InitializeComponent();
-            this.DataContext = new HomeViewModel(new UserLoginModel()); 
+            ViewModel = new HomeViewModel(new UserLoginModel());
+            this.DataContext = ViewModel;
             WBrowser.Navigate(new Uri("https://graph.facebook.com/oauth/authorize?client_id=559878724040104&redirect_uri=http://www.facebook.com/connect/login_success.html&type=user_agent&display=popup").AbsoluteUri);
             
 
@@ -45,6 +39,7 @@ namespace MyoTestv4
 
         private void WBrowser_OnNavigated(object sender, NavigationEventArgs e)
         {
+            ViewModel = ViewModel;
             this.ViewModel.initLogin(e); 
         }
     }

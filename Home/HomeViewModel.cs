@@ -24,12 +24,8 @@ namespace MyoTestv4
 
             _loginObj = login;
 
-            //need to invoke initLogin() here
-            initLogin(e);
-           
-
             
-        
+           
         }
 
         public bool LoggedIn

@@ -153,6 +153,8 @@ namespace MyoTestv4.AdductionAbductionFlexion
                 
         }
 
+
+        public object PoseChanged { get; set; }
     }
          
 }
