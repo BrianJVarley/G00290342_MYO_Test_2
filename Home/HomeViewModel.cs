@@ -17,6 +17,7 @@ namespace MyoTestv4
         //bool to set view visibility 
         //between browser and text block.
         private bool _loggedIn = false;
+        private string _userName;
 
 
         public HomeViewModel(UserLoginModel login)
@@ -38,6 +39,46 @@ namespace MyoTestv4
                 OnPropertyChanged("LoggedIn");
             }
         }
+
+
+        public UserLoginModel LoginObject
+        {
+            get { return _loginObj; }
+            set
+            {
+                if (value == _loginObj) return;
+                _loginObj = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+
+        public string UserName
+        {
+            get
+            {
+                if (_loginObj != null)
+                {
+                    _userName = _loginObj.UserName;
+                }
+                else
+                {
+                    _userName = "Not Logged In";
+                }
+                return _userName;
+            }
+            set
+            {
+                if (_loginObj != null)
+                {
+                    if (Equals(_loginObj.UserName, value)) return;
+                    _loginObj.UserName = value;
+                    OnPropertyChanged("UserName");
+                }
+            }
+        }
+
 
 
         public void initLogin(NavigationEventArgs e)

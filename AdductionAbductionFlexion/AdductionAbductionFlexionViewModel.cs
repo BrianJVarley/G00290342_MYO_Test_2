@@ -13,7 +13,7 @@ namespace MyoTestv4
     {
         private MyoDeviceModel _myoDevice;
         private DatabaseModel _dataObj;
-
+        
         
 
         public event Action<string> DataChanged;
@@ -155,6 +155,7 @@ namespace MyoTestv4
 
         public async void SaveChangesToPersistence(object param)
         {
+            
             await _dataObj.SubmitChanges(StartDegreeStatus, EndDegreeStatus);
             this.CommitStatus = "Data committed successfully!";
 
