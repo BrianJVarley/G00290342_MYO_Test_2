@@ -12,12 +12,13 @@ namespace MyoTestv4
     public class HomeViewModel : ObservableObject, IPageViewModel, INotifyPropertyChanged
     {
 
-        private UserLoginModel _loginObj;
+        private static UserLoginModel _loginObj;
 
         //bool to set view visibility 
         //between browser and text block.
         private bool _loggedIn = false;
-        private string _userName;
+        private static string _userName;
+        private static string _gender;
 
 
         public HomeViewModel(UserLoginModel login)
@@ -25,8 +26,8 @@ namespace MyoTestv4
 
             _loginObj = login;
 
-            
-           
+
+
         }
 
         public bool LoggedIn
@@ -41,20 +42,32 @@ namespace MyoTestv4
         }
 
 
-        public UserLoginModel LoginObject
+        public string Gender
+        {
+            get { return _gender; }
+            set
+            {
+                if (Equals(value, _gender)) return;
+                _gender = value;
+                OnPropertyChanged("LoggedIn");
+            }
+        }
+
+
+        public static UserLoginModel LoginObject
         {
             get { return _loginObj; }
             set
             {
                 if (value == _loginObj) return;
                 _loginObj = value;
-                OnPropertyChanged();
+                //OnPropertyChanged();
             }
         }
 
 
 
-        public string UserName
+        public static string UserName
         {
             get
             {
@@ -74,7 +87,7 @@ namespace MyoTestv4
                 {
                     if (Equals(_loginObj.UserName, value)) return;
                     _loginObj.UserName = value;
-                    OnPropertyChanged("UserName");
+                    //OnPropertyChanged("UserName");
                 }
             }
         }
@@ -89,21 +102,21 @@ namespace MyoTestv4
 
 
 
-                this._loginObj.AccessToken = e.Uri.Fragment.Split('&')[0].Replace("#access_token=", "");
-                this._loginObj.FbClient = new FacebookClient(this._loginObj.AccessToken);
+                _loginObj.AccessToken = e.Uri.Fragment.Split('&')[0].Replace("#access_token=", "");
+                _loginObj.FbClient = new FacebookClient(_loginObj.AccessToken);
 
                 LoggedIn = true;
 
 
-                this._loginObj.FbC = this._loginObj.FbClient;
+                _loginObj.FbC = _loginObj.FbClient;
 
-                dynamic me = this._loginObj.FbClient.Get("Me");
+                dynamic me = _loginObj.FbClient.Get("Me");
 
                 //set profile fields to string variables
-                this._loginObj.UserName = me.name;
-                this._loginObj.Gender = me.gender;
-                this._loginObj.Link = me.link;
-               
+                _loginObj.UserName = me.name;
+                _loginObj.Gender = me.gender;
+                _loginObj.Link = me.link;
+
 
             }
 

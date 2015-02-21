@@ -6,6 +6,7 @@ using System.Windows.Threading;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using MyoTestv4.AdductionAbductionFlexion;
+using MyoTestv4.Home;
 
 namespace MyoTestv4
 {
@@ -153,10 +154,11 @@ namespace MyoTestv4
         public ICommand DataSubmitCommand { get; private set; }
 
 
-        public async void SaveChangesToPersistence(object param)
+        public void SaveChangesToPersistence(object param)
         {
-            
-            await _dataObj.SubmitChanges(StartDegreeStatus, EndDegreeStatus);
+
+
+            DatabaseModel.SubmitChangesAsync(StartDegreeStatus, EndDegreeStatus, HomeViewModel.LoginObject.UserName);
             this.CommitStatus = "Data committed successfully!";
 
             DataChanged(CommitStatus);

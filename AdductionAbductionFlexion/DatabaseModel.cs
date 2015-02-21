@@ -16,20 +16,15 @@ namespace MyoTestv4.AdductionAbductionFlexion
         //constants
         const string exerciseValue = "Adduction Flexion";
         //const String RepititionsValue = "21";
-        const string genderValue = "Male";
-        const string userValue = "Brian J";
+        
 
-        //custom events
-        public event Action<string> CommitUpdated;
-
-
-
+       
         
         //method to push progress data to database
-        public Task SubmitChanges(string startDegreeStatus, string endDegreeStatus)
+        public static Task SubmitChangesAsync(string StartDegreeStatus, string EndDegreeStatus, string UserName)
         {
             var table = App.MobileService.GetTable<Item>();
-            Item item = new Item { Date = " " + DateTime.Now.ToString(@"MM\/dd\/yyyy h\:mm tt"), User = userValue, Exercise = exerciseValue, Gender = genderValue, Painful_Arc_Start = startDegreeStatus, Painful_Arc_End = endDegreeStatus };
+            Item item = new Item { Date = " " + DateTime.Now.ToString(@"MM\/dd\/yyyy h\:mm tt"), User = UserName, Exercise = exerciseValue, Painful_Arc_Start = StartDegreeStatus, Painful_Arc_End = EndDegreeStatus };
             return table.InsertAsync(item);
         }
 
