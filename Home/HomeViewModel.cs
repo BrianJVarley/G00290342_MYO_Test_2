@@ -44,12 +44,27 @@ namespace MyoTestv4
 
         public string Gender
         {
-            get { return _gender; }
+            get 
+            {
+                if (_loginObj != null)
+                {
+                    _gender = _loginObj.Gender;
+                }
+                else
+                {
+                    _gender = "Not Logged In";
+                }
+                return _gender;             
+            }
+                 
             set
             {
-                if (Equals(value, _gender)) return;
-                _gender = value;
-                OnPropertyChanged("LoggedIn");
+                if (_loginObj != null)
+                {
+                    if (Equals(_loginObj.Gender, value)) return;
+                    _loginObj.Gender = value;
+                    OnPropertyChanged("Gender");
+                }
             }
         }
 
@@ -61,7 +76,6 @@ namespace MyoTestv4
             {
                 if (value == _loginObj) return;
                 _loginObj = value;
-                //OnPropertyChanged();
             }
         }
 
