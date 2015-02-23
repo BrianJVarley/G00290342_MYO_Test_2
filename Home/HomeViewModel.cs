@@ -18,7 +18,7 @@ namespace MyoTestv4
         //between browser and text block.
         private bool _loggedIn = false;
         private static string _userName;
-        private string _gender;
+        private static string _gender;
 
 
         public HomeViewModel(UserLoginModel login)
@@ -42,7 +42,7 @@ namespace MyoTestv4
         }
 
 
-        public string Gender
+        public static string Gender
         {
             get { return _gender; }
             set
@@ -124,6 +124,7 @@ namespace MyoTestv4
                 _loginObj.UserName = me.name;
                 _loginObj.Gender = me.gender;
                 _loginObj.Link = me.link;
+                
 
 
             }

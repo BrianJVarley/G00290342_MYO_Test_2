@@ -158,7 +158,7 @@ namespace MyoTestv4
         {
 
 
-            DatabaseModel.SubmitChangesAsync(StartDegreeStatus, EndDegreeStatus, HomeViewModel.LoginObject.UserName);
+            DatabaseModel.SubmitChangesAsync(StartDegreeStatus, EndDegreeStatus, HomeViewModel.LoginObject.UserName, HomeViewModel.LoginObject.Gender);
             this.CommitStatus = "Data committed successfully!";
 
             DataChanged(CommitStatus);
