@@ -18,7 +18,7 @@ namespace MyoTestv4
         //between browser and text block.
         private bool _loggedIn = false;
         private static string _userName;
-        private static string _gender;
+        private string _gender;
 
 
         public HomeViewModel(UserLoginModel login)
@@ -44,27 +44,12 @@ namespace MyoTestv4
 
         public string Gender
         {
-            get 
-            {
-                if (_loginObj != null)
-                {
-                    _gender = _loginObj.Gender;
-                }
-                else
-                {
-                    _gender = "Not Logged In";
-                }
-                return _gender;             
-            }
-                 
+            get { return _gender; }
             set
             {
-                if (_loginObj != null)
-                {
-                    if (Equals(_loginObj.Gender, value)) return;
-                    _loginObj.Gender = value;
-                    OnPropertyChanged("Gender");
-                }
+                if (String.Equals(value, _gender, StringComparison.OrdinalIgnoreCase)) return;
+                _gender = value;
+                OnPropertyChanged();
             }
         }
 
@@ -107,6 +92,15 @@ namespace MyoTestv4
         }
 
 
+        public string Name
+        {
+            get
+            {
+                return "Home Page";
+            }
+        }
+
+
 
         public void initLogin(NavigationEventArgs e)
         {
@@ -140,12 +134,6 @@ namespace MyoTestv4
 
 
 
-        public string Name
-        {
-            get
-            {
-                return "Home Page";
-            }
-        }
+       
     }
 }
