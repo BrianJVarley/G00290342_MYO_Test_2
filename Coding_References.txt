@@ -22,6 +22,8 @@ https://github.com/tb2johhm/MMVVM/blob/master/Commands/RelayCommand.cs
 
 http://stackoverflow.com/questions/20295118/how-to-implement-a-booltovisibilityconverter
 
+http://www.codeproject.com/Articles/9364/Merging-NET-assemblies-using-ILMerge
+
 
 
 

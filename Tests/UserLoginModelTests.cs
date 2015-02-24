@@ -10,7 +10,7 @@ using System.Runtime.CompilerServices;
 namespace MyoTestv4.Tests
 {
     [TestFixture]
-    class UserLoginModelTests : INotifyPropertyChanged
+    class UserLoginModelTests 
     {
         string ChangedPropertyName = "";
 

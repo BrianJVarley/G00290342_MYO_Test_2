@@ -65,7 +65,7 @@ namespace MyoTestv4.AdductionAbductionFlexion
                         
                     e.Myo.Vibrate(VibrationType.Short);
 
-                    // unlock the Myo so that it doesn't keep locking between our poses
+                    // unlock the Myo so that it doesn't keep locking between poses
                     e.Myo.Unlock(UnlockType.Hold);
 
                     e.Myo.PoseChanged += Myo_PoseChanged;
@@ -101,7 +101,7 @@ namespace MyoTestv4.AdductionAbductionFlexion
                 var handler = PoseUpdated;
                 if (handler != null)
                 {
-                    handler("Pose: " + e.Myo.Pose);
+                    handler(e.Myo.Pose.ToString());
                 }
 
                 e.Myo.Vibrate(VibrationType.Short);
@@ -122,6 +122,11 @@ namespace MyoTestv4.AdductionAbductionFlexion
                 //painful arc logic
                 if (e.Myo.Pose == Pose.WaveOut)
                 {
+
+                    //provide haptic feedback, to indicate that 
+                    //painfull arc is being tracked.
+                    e.Myo.Vibrate(VibrationType.Short);
+
                     endDegree = string.Empty;
                     if (string.IsNullOrEmpty(startingDegree))
                     {

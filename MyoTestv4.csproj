@@ -59,14 +59,14 @@
     <ApplicationIcon>GesturePhysioIcon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CircularGauge">
-      <HintPath>..\..\..\..\..\..\..\Asus WebStorage\brianvarley9@gmail.com\MySyncFolder\EOY Project\CircularGauge.dll</HintPath>
-    </Reference>
     <Reference Include="Facebook">
       <HintPath>..\packages\Facebook.6.8.0\lib\net40-client\Facebook.dll</HintPath>
     </Reference>
     <Reference Include="Gauges">
       <HintPath>..\..\..\..\..\..\..\Asus WebStorage\brianvarley9@gmail.com\MySyncFolder\EOY Project\dlls\Gauges.dll</HintPath>
+    </Reference>
+    <Reference Include="Gu.Gauges">
+      <HintPath>..\..\..\..\..\Desktop\Gu.Gauges-master\Gu.Gauges\bin\Debug\Gu.Gauges.dll</HintPath>
     </Reference>
     <Reference Include="Mantin.Controls.Wpf.Notification">
       <HintPath>packages\Mantin.Controls.Wpf.Notification.2.7.0.0\lib\net40\Mantin.Controls.Wpf.Notification.dll</HintPath>
@@ -113,9 +113,6 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
-    <Reference Include="WpfGauge">
-      <HintPath>..\..\..\..\..\..\..\Asus WebStorage\brianvarley9@gmail.com\MySyncFolder\EOY Project\WpfGauge.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
