@@ -12,7 +12,7 @@ namespace MyoTestv4.Tests
     public class VMTests
     {
         [Test]
-        public void TestAppVM()
+        public void TestApplicationViewModel()
         {
 
             HomeViewModel vm = new HomeViewModel(new UserLoginModel());
@@ -22,15 +22,6 @@ namespace MyoTestv4.Tests
 
         }
 
-
-        [Test]
-        public void TestAdductionAbductionFlexionViewModel()
-        {
-
-             
-
-
-        }
 
 
     }

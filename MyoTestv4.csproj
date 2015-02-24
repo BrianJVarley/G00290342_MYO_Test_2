@@ -142,7 +142,8 @@
     <Compile Include="Internal\PlatformInvocation.cs" />
     <Compile Include="IPageViewModel.cs" />
     <Compile Include="Tests\MyoDeviceTests.cs" />
-    <Compile Include="Tests\VMTests.cs" />
+    <Compile Include="Tests\UserLoginModelTests.cs" />
+    <Compile Include="Tests\ApplicationVMTests.cs" />
     <Page Include="Home\HomeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

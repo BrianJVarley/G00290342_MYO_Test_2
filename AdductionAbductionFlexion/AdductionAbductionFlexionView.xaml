@@ -12,8 +12,8 @@
         <Grid HorizontalAlignment="Left" Height="280" Margin="10,10,0,0" VerticalAlignment="Top" Width="280">
 
 
-            <TextBox HorizontalAlignment="Left" x:Name="statusTbx" Background="#141c28" Foreground="White" Height="25" Margin="140,10,0,0" TextWrapping="Wrap" Text="{Binding CurrentStatus}" VerticalAlignment="Top" Width="120"/>
-            <TextBox HorizontalAlignment="Left" x:Name="poseStatusTbx" Background="#141c28" Foreground="White" Height="24" Margin="140,48,0,0" TextWrapping="Wrap" Text="{Binding PoseStatus}" VerticalAlignment="Top" Width="120"/>
+            <TextBox HorizontalAlignment="Left" x:Name="statusTbx" Background="#141c28" Foreground="White" Height="25" Margin="87,10,0,0" TextWrapping="Wrap" Text="{Binding CurrentStatus}" VerticalAlignment="Top" Width="120"/>
+            <TextBox HorizontalAlignment="Left" x:Name="poseStatusTbx" Background="#141c28" Foreground="White" Height="24" Margin="87,53,0,0" TextWrapping="Wrap" Text="{Binding PoseStatus}" VerticalAlignment="Top" Width="120"/>
             <TextBox HorizontalAlignment="Left" x:Name="degreeOfAbductionTbx" Background="#141c28" Foreground="White" Height="22" Margin="108,205,0,0" TextWrapping="Wrap" Text="{Binding DegreeStatus}" VerticalAlignment="Top" Width="110"/>
             <Label Content="Degrees:" Foreground="#00bdde" HorizontalAlignment="Left" Margin="10,200,0,0" VerticalAlignment="Top" Width="98"/>
             <Label Content="Painful arc start:" Foreground="#00bdde" HorizontalAlignment="Left" Margin="10,151,0,0" VerticalAlignment="Top" Width="110"/>
@@ -24,7 +24,7 @@
 
             <gauges:Gauge x:Name="Gauge"
 				Grid.Row="0"
-				Margin="84,7,141,137"
+				Margin="223,6,2,5"
 				HorizontalAlignment="Stretch"
 				VerticalAlignment="Stretch"
 				Marker="Triangle"
@@ -34,7 +34,7 @@
 				ShowLabels="True"
 				ShowMajorTicks="True"
 				ShowTrack="True"
-				TickFrequency="20"
+				TickFrequency="5"
 				Value="{Binding DegreeStatus}" RenderTransformOrigin="0.5,0.5">
                 <gauges:Gauge.RenderTransform>
                     <TransformGroup>

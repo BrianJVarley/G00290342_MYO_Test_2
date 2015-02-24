@@ -49,7 +49,7 @@ namespace MyoTestv4
             {
                 if (String.Equals(value, _gender, StringComparison.OrdinalIgnoreCase)) return;
                 _gender = value;
-                OnPropertyChanged();
+                //OnPropertyChanged();
             }
         }
 

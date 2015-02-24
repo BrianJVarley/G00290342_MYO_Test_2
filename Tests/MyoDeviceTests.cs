@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MyoSharp.Poses;
 
 namespace MyoTestv4.Tests
 {
@@ -18,7 +19,8 @@ namespace MyoTestv4.Tests
         {
             
             //unit test the Myo device pose changed code
-            //myo.PoseChanged += Myo_PoseChanged
+            //myo.PoseChanged += Myo_PoseChanged;
+            //need to mock device to test this.
 
 
         }
