@@ -43,6 +43,7 @@ namespace MyoTestv4.AdductionAbductionFlexion
         private int pitch = 0;
         private string startingDegree;
         private string endDegree;
+        private double degreeOutputDouble;
         private double degreeOutput;
 
 
@@ -111,7 +112,9 @@ namespace MyoTestv4.AdductionAbductionFlexion
         private void Myo_OrientationDataAcquired(object sender, OrientationDataEventArgs e)
         { 
                 //myo indicator must be facing down or degrees will be inverted.
-                degreeOutput = ((e.Pitch + PITCH_MIN) * CALLIBRATION_FACTOR);
+                degreeOutputDouble = ((e.Pitch + PITCH_MIN) * CALLIBRATION_FACTOR);
+                degreeOutputDouble = Math.Round(degreeOutputDouble, 2);
+                degreeOutput = degreeOutputDouble;
 
                 var handler = DegreesUpdated;
                 if (handler != null)
@@ -120,7 +123,7 @@ namespace MyoTestv4.AdductionAbductionFlexion
                 }
 
                 //painful arc logic
-                if (e.Myo.Pose == Pose.WaveOut)
+                if (e.Myo.Pose == Pose.Fist)
                 {
 
                     //provide haptic feedback, to indicate that 
