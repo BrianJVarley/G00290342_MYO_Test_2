@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
+// <author>Brian Varley</author>
+// <summary>Item</summary>
 namespace MyoTestv4.AdductionAbductionFlexion
 {
     public class Item

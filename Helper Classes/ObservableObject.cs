@@ -5,6 +5,11 @@ using System.Collections;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
+// <author>Brian Varley</author>
+// <summary>MyoDeviceModel</summary>
+// <summary>Helper ObservableObject class adapted from this
+//example: http://rachel53461.wordpress.com/2011/12/18/navigation-with-mvvm-2/ </summary>
+
 namespace MyoTestv4
 {
     public abstract class ObservableObject : INotifyPropertyChanged

@@ -16,6 +16,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+// <author>Brian Varley</author>
+// <summary>HomeView</summary>
+
 namespace MyoTestv4
 {
     /// <summary>

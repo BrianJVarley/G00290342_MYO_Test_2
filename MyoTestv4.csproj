@@ -59,11 +59,10 @@
     <ApplicationIcon>GesturePhysioIcon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ArtOfTest.WebAii, Version=2014.4.1211.0, Culture=neutral, PublicKeyToken=4fd5f65be123776c, processorArchitecture=MSIL" />
+    <Reference Include="ArtOfTest.WebAii.Design, Version=2014.4.1211.0, Culture=neutral, PublicKeyToken=4fc62bbc3827ab1d, processorArchitecture=MSIL" />
     <Reference Include="Facebook">
       <HintPath>..\packages\Facebook.6.8.0\lib\net40-client\Facebook.dll</HintPath>
-    </Reference>
-    <Reference Include="Gauges">
-      <HintPath>..\..\..\..\..\..\..\Asus WebStorage\brianvarley9@gmail.com\MySyncFolder\EOY Project\dlls\Gauges.dll</HintPath>
     </Reference>
     <Reference Include="Gu.Gauges">
       <HintPath>..\..\..\..\..\Desktop\Gu.Gauges-master\Gu.Gauges\bin\Debug\Gu.Gauges.dll</HintPath>

@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
 
+// <author>Brian Varley</author>
+// <summary>BoolToNonVisibilityConverter</summary>
+
 namespace MyoTestv4.Home
 {
     public class BoolToNonVisibilityConverter : IValueConverter

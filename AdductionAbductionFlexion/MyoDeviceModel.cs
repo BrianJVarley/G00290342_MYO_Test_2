@@ -19,6 +19,9 @@ using MyoTestv4.AdductionAbductionFlexion;
 using MyoSharp.Poses;
 using System.ComponentModel;
 
+
+// <author>Brian Varley</author>
+// <summary>MyoDeviceModel</summary>
 namespace MyoTestv4.AdductionAbductionFlexion
 {
     public class MyoDeviceModel

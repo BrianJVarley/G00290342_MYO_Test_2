@@ -8,6 +8,11 @@ using System.Runtime.CompilerServices;
 using MyoTestv4.AdductionAbductionFlexion;
 using MyoTestv4.Home;
 
+
+
+// <author>Brian Varley</author>
+// <summary>AdductionAbductionViewModel</summary>
+
 namespace MyoTestv4
 {
     public class AdductionAbductionFlexionViewModel : ObservableObject, IPageViewModel, INotifyPropertyChanged

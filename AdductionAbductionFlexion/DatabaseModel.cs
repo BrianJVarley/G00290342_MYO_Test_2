@@ -7,6 +7,8 @@ using System.Windows.Media;
 using Mantin.Controls.Wpf;
 using Mantin.Controls.Wpf.Notification;
 
+// <author>Brian Varley</author>
+// <summary>DatabaseModel</summary>
 
 namespace MyoTestv4.AdductionAbductionFlexion
 {

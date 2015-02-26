@@ -19,12 +19,13 @@ using MyoSharp.Poses;
 using System.ComponentModel;
 using Mantin.Controls.Wpf.Notification;
 
+// <author>Brian Varley</author>
+// <summary>AdductionAbductionFlexionView</summary>
+
 
 namespace MyoTestv4
 {
-    /// <summary>
-    /// Interaction logic for ProductsView.xaml
-    /// </summary>
+    
     public partial class AdductionAbductionFlexionView : UserControl
     {
         

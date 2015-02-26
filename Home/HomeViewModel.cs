@@ -7,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Windows.Navigation;
 
+// <author>Brian Varley</author>
+// <summary>HomeViewModel</summary>
+
 namespace MyoTestv4
 {
     public class HomeViewModel : ObservableObject, IPageViewModel, INotifyPropertyChanged
