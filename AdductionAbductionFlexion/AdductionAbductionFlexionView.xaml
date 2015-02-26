@@ -21,7 +21,10 @@
             <Label Content="Arc end:" Foreground="#00bdde" HorizontalAlignment="Left" Margin="0,217,0,0" VerticalAlignment="Top" Width="57"/>
             <TextBox HorizontalAlignment="Left" x:Name="painfulArcStartTbx" Background="#141c28" Foreground="White" Height="23" Margin="62,189,0,0" TextWrapping="Wrap" Text="{Binding StartDegreeStatus}" VerticalAlignment="Top" Width="48"/>
 
-            <gauges:AngularGauge
+
+            <Grid>
+
+                <gauges:AngularGauge
                                          HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
                                          IsDirectionReversed="False"
                                          MajorTickFrequency="8"
@@ -35,16 +38,41 @@
                                          MinorTickFrequency="4"
                                          Value="{Binding DegreeStatus}" Margin="149,2,-89,2" RenderTransformOrigin="0.5,0.5" Height="Auto" Width="Auto"
                                          >
-                <gauges:AngularGauge.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform/>
-                        <RotateTransform Angle="-89.642"/>
-                        <TranslateTransform/>
-                    </TransformGroup>
-                </gauges:AngularGauge.RenderTransform>
+                    <gauges:AngularGauge.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="-89.642"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </gauges:AngularGauge.RenderTransform>
 
-            </gauges:AngularGauge>
+                </gauges:AngularGauge>
+
+                <gauges:AngularBlockBar Fill="LightGray"
+                        MaxAngle="180"
+                        Maximum="1"
+                        MinAngle="0"
+                        Minimum="0"
+                        Opacity="0.2"
+                        ReservedSpace="50"
+                        Margin="149,2,-96,0"
+                        TickLength="55"
+                        Value="1" RenderTransformOrigin="0.5,0.5" >
+                    <gauges:AngularBlockBar.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="90.711"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </gauges:AngularBlockBar.RenderTransform>
+                </gauges:AngularBlockBar>
+
+
+            </Grid>
+
+
 
 
             <TextBlock HorizontalAlignment="Left" x:Name="repCntTblk" Margin="80,43,0,0" TextWrapping="Wrap" Text="" FontSize="38" Foreground="#00bdde" VerticalAlignment="Top" Width="34" Height="41"/>

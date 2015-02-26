@@ -131,7 +131,7 @@ namespace MyoTestv4.AdductionAbductionFlexion
 
                     //provide haptic feedback, to indicate that 
                     //painfull arc is being tracked.
-                    e.Myo.Vibrate(VibrationType.Short);
+                   // e.Myo.Vibrate(VibrationType.Short);//buggy
 
                     endDegree = string.Empty;
                     if (string.IsNullOrEmpty(startingDegree))
