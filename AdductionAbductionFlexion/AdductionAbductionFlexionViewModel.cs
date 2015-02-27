@@ -46,6 +46,13 @@ namespace MyoTestv4
                 PoseStatus = update;   
             };
 
+
+            _myoDevice.PainfulArcDegreeUpdated += (update) =>
+            {
+                PainfulArcStatus = update;
+            };
+
+
             _myoDevice.DegreesUpdated += (update) =>
             {
                 DegreeStatus = update;
@@ -94,6 +101,22 @@ namespace MyoTestv4
         }
 
 
+        private double painfulArcStatus;
+        public double PainfulArcStatus
+        {
+            get { return this.painfulArcStatus; }
+            set
+            {
+                if (this.painfulArcStatus != value)
+                {
+                    this.painfulArcStatus = value;
+                    this.RaisePropertyChanged("PainfulArcStatus");
+                }
+            }
+        }
+
+
+
         private string poseStatus;
         public string PoseStatus
         {
@@ -125,8 +148,8 @@ namespace MyoTestv4
 
 
 
-        private string endDegreeStatus;
-        public string EndDegreeStatus
+        private double endDegreeStatus;
+        public double EndDegreeStatus
         {
             get { return this.endDegreeStatus; }
             set
@@ -140,8 +163,8 @@ namespace MyoTestv4
         }
 
 
-        private string startDegreeStatus;
-        public string StartDegreeStatus
+        private double startDegreeStatus;
+        public double StartDegreeStatus
         {
             get { return this.startDegreeStatus; }
             set

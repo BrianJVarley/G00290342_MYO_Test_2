@@ -33,22 +33,24 @@ namespace MyoTestv4.AdductionAbductionFlexion
         public event Action<string> StatusUpdated;
         public event Action<string> PoseUpdated;
         public event Action<double> DegreesUpdated;
-        public event Action<string> StartDegreeUpdated;
-        public event Action<string> EndDegreeUpdated;
-
+        public event Action<double> StartDegreeUpdated;
+        public event Action<double> EndDegreeUpdated;
+        public event Action<double> PainfulArcDegreeUpdated;
+        
         //Constants
         private const double CALLIBRATION_FACTOR = 61.64;
         private const double PITCH_MAX = -1.46;
         private const double PITCH_MIN = 1.46;
 
 
-        private int myoCorrected = 0;
-        private int pitch = 0;
-        private string startingDegree;
-        private string endDegree;
-        private double degreeOutputDouble;
-        private double degreeOutput;
-
+        private int _myoCorrected = 0;
+        private int _pitch = 0;
+        private double _startingDegree;
+        private double _endDegree;
+        private double _degreeOutputDouble;
+        private double _degreeOutput;
+        private double _painfulArcOutput;
+        
 
         #region Methods
 
@@ -114,15 +116,16 @@ namespace MyoTestv4.AdductionAbductionFlexion
 
         private void Myo_OrientationDataAcquired(object sender, OrientationDataEventArgs e)
         { 
+
                 //myo indicator must be facing down or degrees will be inverted.
-                degreeOutputDouble = ((e.Pitch + PITCH_MIN) * CALLIBRATION_FACTOR);
-                degreeOutputDouble = Math.Round(degreeOutputDouble, 2);
-                degreeOutput = degreeOutputDouble;
+                _degreeOutputDouble = ((e.Pitch + PITCH_MIN) * CALLIBRATION_FACTOR);
+                _degreeOutputDouble = Math.Round(_degreeOutputDouble, 2);
+                _degreeOutput = _degreeOutputDouble;
 
                 var handler = DegreesUpdated;
                 if (handler != null)
                 {
-                    handler(degreeOutput);
+                    handler(_degreeOutput);
                 }
 
                 //painful arc logic
@@ -133,15 +136,17 @@ namespace MyoTestv4.AdductionAbductionFlexion
                     //painfull arc is being tracked.
                    // e.Myo.Vibrate(VibrationType.Short);//buggy
 
-                    endDegree = string.Empty;
-                    if (string.IsNullOrEmpty(startingDegree))
+                    _endDegree = 0;
+                    if (_startingDegree == 0)
                     {
-                        startingDegree = degreeOutput.ToString();
+                        _startingDegree = _degreeOutput;
                     }
                     var handlerArcStart = StartDegreeUpdated;
                     if (handlerArcStart != null)
                     {
-                        handlerArcStart(startingDegree);
+                        handlerArcStart(_startingDegree);
+
+
                     }
                        
 
@@ -149,15 +154,18 @@ namespace MyoTestv4.AdductionAbductionFlexion
                 
                 else
                 {
-                    startingDegree = string.Empty;
-                    if (string.IsNullOrEmpty(endDegree))
+                    _startingDegree = 0;
+                    if (_endDegree == 0)
                     {
-                        endDegree = degreeOutput.ToString();
+                        _endDegree = _degreeOutput;
                     }
                     var handlerArcEnd = EndDegreeUpdated; 
                     if (handlerArcEnd != null)
                     {
-                        handlerArcEnd(endDegree);
+                        handlerArcEnd(_endDegree);
+                        
+                        _painfulArcOutput = _endDegree - _startingDegree;
+                        var handlerPainfulArc = PainfulArcDegreeUpdated;
                     }
                     
                 }

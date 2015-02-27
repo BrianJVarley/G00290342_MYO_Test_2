@@ -23,10 +23,10 @@ namespace MyoTestv4.AdductionAbductionFlexion
        
         
         //method to push progress data to database
-        public static Task SubmitChangesAsync(string StartDegreeStatus, string EndDegreeStatus, string UserName, string Gender)
+        public static Task SubmitChangesAsync(double StartDegreeStatus, double EndDegreeStatus, string UserName, string Gender)
         {
             var table = App.MobileService.GetTable<Item>();
-            Item item = new Item { Date = " " + DateTime.Now.ToString(@"MM\/dd\/yyyy h\:mm tt"), User = UserName, Exercise = ExerciseValue, Painful_Arc_Start = StartDegreeStatus, Painful_Arc_End = EndDegreeStatus ,Gender = Gender};
+            Item item = new Item { Date = " " + DateTime.Now.ToString(@"MM\/dd\/yyyy h\:mm tt"), User = UserName, Exercise = ExerciseValue, Painful_Arc_Start = StartDegreeStatus.ToString(), Painful_Arc_End = EndDegreeStatus.ToString() ,Gender = Gender};
             return table.InsertAsync(item);
         }
 
