@@ -10,66 +10,51 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <Viewbox>
         <Grid HorizontalAlignment="Left" Height="280" Margin="10,10,0,0" VerticalAlignment="Top" Width="280">
-
-
-            <TextBox HorizontalAlignment="Left" x:Name="statusTbx" Background="#141c28" Foreground="White" BorderBrush="#141c28" Height="30" Margin="0,3,0,0" TextWrapping="Wrap" Text="{Binding CurrentStatus}" VerticalAlignment="Top" Width="75"/>
-            <TextBox HorizontalAlignment="Left" x:Name="poseStatusTbx" Background="#141c28" Foreground="White" BorderBrush="#141c28" Height="39" Margin="80,4,0,0" TextWrapping="Wrap" Text="{Binding PoseStatus}" VerticalAlignment="Top" Width="75"/>
-            <TextBox HorizontalAlignment="Left" x:Name="degreeOfAbductionTbx" Background="#141c28" Foreground="White" Height="22" Margin="0,246,0,0" TextWrapping="Wrap" Text="{Binding DegreeStatus}" VerticalAlignment="Top" Width="47"/>
-            <Label Content="Arc start:" Foreground="#00bdde" HorizontalAlignment="Left" Margin="0,186,0,0" VerticalAlignment="Top" Width="57"/>
-            <Image HorizontalAlignment="Left" Source="pack://application:,,,/Images/abduction_side_trans.png" x:Name="exerciseImage" Height="100" Margin="0,33,0,0" VerticalAlignment="Top" Width="100"/>
-            <TextBox HorizontalAlignment="Left" x:Name="painfulArcEndTbx" Background="#141c28" Foreground="White" Height="22" Margin="62,217,0,0" TextWrapping="Wrap" Text="{Binding EndDegreeStatus}" VerticalAlignment="Top" Width="48"/>
-            <Label Content="Arc end:" Foreground="#00bdde" HorizontalAlignment="Left" Margin="0,217,0,0" VerticalAlignment="Top" Width="57"/>
-            <TextBox HorizontalAlignment="Left" x:Name="painfulArcStartTbx" Background="#141c28" Foreground="White" Height="23" Margin="62,189,0,0" TextWrapping="Wrap" Text="{Binding StartDegreeStatus}" VerticalAlignment="Top" Width="48"/>
-
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
 
             <Grid>
 
-                <gauges:AngularGauge
-                                         HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-                                         IsDirectionReversed="False"
-                                         MajorTickFrequency="8"
-                                         FontSize="10"
-                                         MajorTicks="10"
-                                         MaxAngle="0"
-                                         Maximum="180"
-                                         MinAngle="-180"
-                                         Minimum="0"
-                                         Style="{StaticResource FatAngular}"
-                                         MinorTickFrequency="4"
-                                         Value="{Binding DegreeStatus}" Margin="149,2,-89,2" RenderTransformOrigin="0.5,0.5" Height="Auto" Width="Auto"
-                                         >
-                    <gauges:AngularGauge.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform/>
-                            <SkewTransform/>
-                            <RotateTransform Angle="-89.642"/>
-                            <TranslateTransform/>
-                        </TransformGroup>
-                    </gauges:AngularGauge.RenderTransform>
+                <TextBox HorizontalAlignment="Left" x:Name="statusTbx" Background="#141c28" Foreground="White" BorderBrush="#141c28" Height="30" Margin="0,3,0,0" TextWrapping="Wrap" Text="{Binding CurrentStatus}" VerticalAlignment="Top" Width="75"/>
+                <TextBox HorizontalAlignment="Left" x:Name="poseStatusTbx" Background="#141c28" Foreground="White" BorderBrush="#141c28" Height="39" Margin="80,4,0,0" TextWrapping="Wrap" Text="{Binding PoseStatus}" VerticalAlignment="Top" Width="75"/>
+                <TextBox HorizontalAlignment="Left" x:Name="degreeOfAbductionTbx" Background="#141c28" Foreground="White" Height="22" Margin="0,246,0,0" TextWrapping="Wrap" Text="{Binding DegreeStatus}" VerticalAlignment="Top" Width="47"/>
+                <Label Content="Arc start:" Foreground="#00bdde" HorizontalAlignment="Left" Margin="0,186,0,0" VerticalAlignment="Top" Width="57"/>
+                <Image HorizontalAlignment="Left" Source="pack://application:,,,/Images/abduction_side_trans.png" x:Name="exerciseImage" Height="100" Margin="0,33,0,0" VerticalAlignment="Top" Width="100"/>
+                <TextBox HorizontalAlignment="Left" x:Name="painfulArcEndTbx" Background="#141c28" Foreground="White" Height="22" Margin="62,217,0,0" TextWrapping="Wrap" Text="{Binding EndDegreeStatus}" VerticalAlignment="Top" Width="48"/>
+                <Label Content="Arc end:" Foreground="#00bdde" HorizontalAlignment="Left" Margin="0,217,0,0" VerticalAlignment="Top" Width="57"/>
+                <TextBox HorizontalAlignment="Left" x:Name="painfulArcStartTbx" Background="#141c28" Foreground="White" Height="23" Margin="62,189,0,0" TextWrapping="Wrap" Text="{Binding StartDegreeStatus}" VerticalAlignment="Top" Width="48"/>
 
-                </gauges:AngularGauge>
+            </Grid>
 
-                <gauges:AngularBlockBar Fill="LightGray"
-                        MaxAngle="180"
-                        Maximum="1"
-                        MinAngle="0"
-                        Minimum="0"
-                        Opacity="0.2"
-                        ReservedSpace="50"
-                        Margin="149,2,-96,0"
-                        TickLength="55"
-                        Value="1" RenderTransformOrigin="0.5,0.5" >
-                    <gauges:AngularBlockBar.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform/>
-                            <SkewTransform/>
-                            <RotateTransform Angle="90.711"/>
-                            <TranslateTransform/>
-                        </TransformGroup>
-                    </gauges:AngularBlockBar.RenderTransform>
-                </gauges:AngularBlockBar>
-
-
+            <Grid Grid.Column = "1">
+                <gauges:AngularGauge Panel.ZIndex="0"
+                             Grid.Row="0"
+                             Grid.Column="1"
+                             FontSize="10"
+                             MajorTickFrequency="10"
+                             MajorTicks="10"
+                             MaxAngle="-90"
+                             Maximum="180"
+                             MinAngle="-270"
+                             Minimum="0"
+                             MinorTickFrequency="4"
+                             Style="{StaticResource FatAngular}"
+                             Value="{Binding DegreeStatus}" Height="Auto" Margin="0,0,-60,67" Grid.RowSpan="2" Width="Auto"
+                             />
+                <gauges:AngularBlockBar Fill="DodgerBlue"
+                                MaxAngle="-270"
+                                Maximum="-90"
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                MinAngle="0"
+                                Minimum="0"
+                                Opacity="0.2"
+                                ReservedSpace="50"
+                                TickLength="55"
+                                Value="{Binding PainfulArcStatus}"
+                                />
             </Grid>
 
 
@@ -77,9 +62,6 @@
 
             <TextBlock HorizontalAlignment="Left" x:Name="repCntTblk" Margin="80,43,0,0" TextWrapping="Wrap" Text="" FontSize="38" Foreground="#00bdde" VerticalAlignment="Top" Width="34" Height="41"/>
             <Button Content="Submit" x:Name="submitBtn" Command="{Binding Path=DataSubmitCommand}" IsDefault="True" IsCancel="True" HorizontalAlignment="Left"  Background="#00bdde" Foreground="White" Margin="0,148,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.76,5.093"/>
-
-
-
 
         </Grid>
     </Viewbox>
