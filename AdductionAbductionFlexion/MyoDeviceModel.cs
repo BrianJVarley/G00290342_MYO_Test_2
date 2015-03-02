@@ -42,9 +42,6 @@ namespace MyoTestv4.AdductionAbductionFlexion
         private const double PITCH_MAX = -1.46;
         private const double PITCH_MIN = 1.46;
 
-
-        private int _myoCorrected = 0;
-        private int _pitch = 0;
         private double _startingDegree;
         private double _endDegree;
         private double _degreeOutputDouble;
@@ -115,61 +112,65 @@ namespace MyoTestv4.AdductionAbductionFlexion
 
 
         private void Myo_OrientationDataAcquired(object sender, OrientationDataEventArgs e)
-        { 
+        {
 
-                //myo indicator must be facing down or degrees will be inverted.
-                _degreeOutputDouble = ((e.Pitch + PITCH_MIN) * CALLIBRATION_FACTOR);
-                _degreeOutputDouble = Math.Round(_degreeOutputDouble, 2);
-                _degreeOutput = _degreeOutputDouble;
+            //myo indicator must be facing down or degrees will be inverted.
+            _degreeOutputDouble = ((e.Pitch + PITCH_MIN) * CALLIBRATION_FACTOR);
+            _degreeOutputDouble = Math.Round(_degreeOutputDouble, 2);
+            _degreeOutput = _degreeOutputDouble;
 
-                var handler = DegreesUpdated;
-                if (handler != null)
+            var handler = DegreesUpdated;
+            if (handler != null)
+            {
+                handler(_degreeOutput);
+            }
+
+            //painful arc logic
+            if (e.Myo.Pose == Pose.Fist)
+            {
+
+                //provide haptic feedback, to indicate that 
+                //painfull arc is being tracked.
+                // e.Myo.Vibrate(VibrationType.Short);//buggy
+
+                _endDegree = 0;
+                if (_startingDegree == 0)
                 {
-                    handler(_degreeOutput);
+                    _startingDegree = _degreeOutput;
+                }
+                var handlerArcStart = StartDegreeUpdated;
+                if (handlerArcStart != null)
+                {
+                    handlerArcStart(_startingDegree);
+
+
                 }
 
-                //painful arc logic
-                if (e.Myo.Pose == Pose.Fist)
+
+            }
+
+            else
+            {
+                _startingDegree = 0;
+                if (_endDegree == 0)
                 {
+                    _endDegree = _degreeOutput;
+                }
+                var handlerArcEnd = EndDegreeUpdated;
+                if (handlerArcEnd != null)
+                {
+                    handlerArcEnd(_endDegree);
 
-                    //provide haptic feedback, to indicate that 
-                    //painfull arc is being tracked.
-                   // e.Myo.Vibrate(VibrationType.Short);//buggy
-
-                    _endDegree = 0;
-                    if (_startingDegree == 0)
+                    _painfulArcOutput = _endDegree - _startingDegree;
+                    var handlerPainfulArc = PainfulArcDegreeUpdated;
+                    if (handlerPainfulArc != null)
                     {
-                        _startingDegree = _degreeOutput;
+                        handlerPainfulArc(_painfulArcOutput);
                     }
-                    var handlerArcStart = StartDegreeUpdated;
-                    if (handlerArcStart != null)
-                    {
-                        handlerArcStart(_startingDegree);
-
-
-                    }
-                       
 
                 }
-                
-                else
-                {
-                    _startingDegree = 0;
-                    if (_endDegree == 0)
-                    {
-                        _endDegree = _degreeOutput;
-                    }
-                    var handlerArcEnd = EndDegreeUpdated; 
-                    if (handlerArcEnd != null)
-                    {
-                        handlerArcEnd(_endDegree);
-                        
-                        _painfulArcOutput = _endDegree - _startingDegree;
-                        var handlerPainfulArc = PainfulArcDegreeUpdated;
-                    }
-                    
-                }
-                
+
+            }
         }
 
 

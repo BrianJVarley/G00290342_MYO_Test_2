@@ -39,22 +39,11 @@
                              Maximum="180"
                              MinAngle="-270"
                              Minimum="0"
-                             MinorTickFrequency="4"
+                             MinorTickFrequency="2"
                              Style="{StaticResource FatAngular}"
-                             Value="{Binding DegreeStatus}" Height="Auto" Margin="0,0,-60,67" Grid.RowSpan="2" Width="Auto"
+                             Value="{Binding PainfulArcStatus}" Grid.RowSpan="2" 
                              />
-                <gauges:AngularBlockBar Fill="DodgerBlue"
-                                MaxAngle="-270"
-                                Maximum="-90"
-                                Grid.Row="0"
-                                Grid.Column="1"
-                                MinAngle="0"
-                                Minimum="0"
-                                Opacity="0.2"
-                                ReservedSpace="50"
-                                TickLength="55"
-                                Value="{Binding PainfulArcStatus}"
-                                />
+                
             </Grid>
 
 
