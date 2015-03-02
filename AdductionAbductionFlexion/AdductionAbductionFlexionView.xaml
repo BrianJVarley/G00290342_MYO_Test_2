@@ -11,14 +11,14 @@
     <Viewbox>
         <Grid HorizontalAlignment="Left" Height="280" Margin="10,10,0,0" VerticalAlignment="Top" Width="280">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition />
+                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="4*" />
             </Grid.ColumnDefinitions>
 
-            <Grid>
+            <Grid Margin="0,0,9,0">
 
                 <TextBox HorizontalAlignment="Left" x:Name="statusTbx" Background="#141c28" Foreground="White" BorderBrush="#141c28" Height="30" Margin="0,3,0,0" TextWrapping="Wrap" Text="{Binding CurrentStatus}" VerticalAlignment="Top" Width="75"/>
-                <TextBox HorizontalAlignment="Left" x:Name="poseStatusTbx" Background="#141c28" Foreground="White" BorderBrush="#141c28" Height="39" Margin="80,4,0,0" TextWrapping="Wrap" Text="{Binding PoseStatus}" VerticalAlignment="Top" Width="75"/>
+                <TextBox HorizontalAlignment="Left" x:Name="poseStatusTbx" Background="#141c28" Foreground="White" BorderBrush="#141c28" Height="39" Margin="47,241,0,0" TextWrapping="Wrap" Text="{Binding PoseStatus}" VerticalAlignment="Top" Width="75"/>
                 <TextBox HorizontalAlignment="Left" x:Name="degreeOfAbductionTbx" Background="#141c28" Foreground="White" Height="22" Margin="0,246,0,0" TextWrapping="Wrap" Text="{Binding DegreeStatus}" VerticalAlignment="Top" Width="47"/>
                 <Label Content="Arc start:" Foreground="#00bdde" HorizontalAlignment="Left" Margin="0,186,0,0" VerticalAlignment="Top" Width="57"/>
                 <Image HorizontalAlignment="Left" Source="pack://application:,,,/Images/abduction_side_trans.png" x:Name="exerciseImage" Height="100" Margin="0,33,0,0" VerticalAlignment="Top" Width="100"/>
@@ -33,6 +33,7 @@
                              Grid.Row="0"
                              Grid.Column="1"
                              FontSize="10"
+                             Height="200"
                              MajorTickFrequency="10"
                              MajorTicks="10"
                              MaxAngle="-90"
@@ -41,16 +42,16 @@
                              Minimum="0"
                              MinorTickFrequency="2"
                              Style="{StaticResource FatAngular}"
-                             Value="{Binding PainfulArcStatus}" Grid.RowSpan="2" 
+                             Value="{Binding DegreeStatus}" Grid.RowSpan="2" 
                              />
-                
+
             </Grid>
 
 
 
 
-            <TextBlock HorizontalAlignment="Left" x:Name="repCntTblk" Margin="80,43,0,0" TextWrapping="Wrap" Text="" FontSize="38" Foreground="#00bdde" VerticalAlignment="Top" Width="34" Height="41"/>
-            <Button Content="Submit" x:Name="submitBtn" Command="{Binding Path=DataSubmitCommand}" IsDefault="True" IsCancel="True" HorizontalAlignment="Left"  Background="#00bdde" Foreground="White" Margin="0,148,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.76,5.093"/>
+            <TextBlock HorizontalAlignment="Left" x:Name="repCntTblk" Margin="9,43,0,0" TextWrapping="Wrap" Text="" FontSize="38" Foreground="#00bdde" VerticalAlignment="Top" Width="34" Height="41" Grid.Column="1"/>
+            <Button Content="Submit" x:Name="submitBtn" Command="{Binding Path=DataSubmitCommand}" IsDefault="True" IsCancel="True" HorizontalAlignment="Left"  Background="#00bdde" Foreground="White" Margin="0,148,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.76,5.093" Height="20"/>
 
         </Grid>
     </Viewbox>
