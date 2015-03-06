@@ -20,9 +20,9 @@ namespace MyoTestv4.Tests
             
             //unit test the Myo device pose changed code
             //need to mock device to test this.
-            var mockMyo = new MyoMock();
+            //var mockMyo = new MyoMock();
             //var device = new myode(fakeMyo);
-            mockMyo.OnMockEvent();
+            //mockMyo.OnMockEvent();
             //Assert.AreEqual(1, device.Count);
 
 

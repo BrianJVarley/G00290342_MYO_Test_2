@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace MyoTestv4.Tests
 {
+    /*
     class MyoMock : IMyo
     {
 
@@ -22,4 +23,5 @@ namespace MyoTestv4.Tests
 
 
     }
+     * */
 }

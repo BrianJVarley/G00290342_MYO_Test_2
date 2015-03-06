@@ -33,15 +33,18 @@ namespace MyoTestv4.AdductionAbductionFlexion
 
         /*
         //method to poll progress data from database
-        public Task PullChanges()
+        private void RefreshTodoItems()
         {
-
-            
-
+            Item items;
+            items = Item
+                    .OrderBy(todoItem => todoItem.Id)
+                    .Take(10)
+                    .ToCollectionView();
+            ListItems.ItemsSource = items;
         }
-        */
+         */
        
-
+        
 
     }
 }

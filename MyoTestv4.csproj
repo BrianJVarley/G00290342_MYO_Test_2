@@ -120,9 +120,6 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="AdductionAbductionFlexion\DatabaseModel.cs" />
-    <Compile Include="AdductionAbductionFlexion\GridExample.xaml.cs">
-      <DependentUpon>GridExample.xaml</DependentUpon>
-    </Compile>
     <Compile Include="AdductionAbductionFlexion\Item.cs" />
     <Compile Include="AdductionAbductionFlexion\MyoDeviceModel.cs" />
     <Compile Include="ApplicationViewModel.cs" />
@@ -145,10 +142,6 @@
     <Compile Include="Tests\MyoMock.cs" />
     <Compile Include="Tests\UserLoginModelTests.cs" />
     <Compile Include="Tests\ApplicationVMTests.cs" />
-    <Page Include="AdductionAbductionFlexion\GridExample.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Home\HomeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
