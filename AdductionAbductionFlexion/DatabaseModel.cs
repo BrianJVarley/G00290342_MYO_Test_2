@@ -19,9 +19,6 @@ namespace MyoTestv4.AdductionAbductionFlexion
         const string ExerciseValue = "Adduction Flexion";
         
         
-
-       
-        
         //method to push progress data to database
         public static Task SubmitChangesAsync(double StartDegreeStatus, double EndDegreeStatus, string UserName, string Gender)
         {

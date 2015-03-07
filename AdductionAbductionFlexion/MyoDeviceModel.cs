@@ -39,9 +39,11 @@ namespace MyoTestv4.AdductionAbductionFlexion
         
         //Constants
         private const double CALLIBRATION_FACTOR = 61.64;
-        private const double PITCH_MAX = -1.46;
-        private const double PITCH_MIN = 1.46;
-
+        //private const double PITCH_MAX = -1.46;
+        //Need to calibrate start point
+        //by setting PITCH_MIN to current pitch
+        //when calibration button clicked.
+        private double _pitchMin = 1.46;
         private double _startingDegree;
         private double _endDegree;
         private double _degreeOutputDouble;
@@ -114,8 +116,9 @@ namespace MyoTestv4.AdductionAbductionFlexion
         private void Myo_OrientationDataAcquired(object sender, OrientationDataEventArgs e)
         {
 
+
             //myo indicator must be facing down or degrees will be inverted.
-            _degreeOutputDouble = ((e.Pitch + PITCH_MIN) * CALLIBRATION_FACTOR);
+            _degreeOutputDouble = ((e.Pitch + _pitchMin) * CALLIBRATION_FACTOR);
             _degreeOutputDouble = Math.Round(_degreeOutputDouble, 2);
             _degreeOutput = _degreeOutputDouble;
 
@@ -166,12 +169,25 @@ namespace MyoTestv4.AdductionAbductionFlexion
                     if (handlerPainfulArc != null)
                     {
                         handlerPainfulArc(_painfulArcOutput);
+                        
                     }
 
                 }
 
             }
         }
+
+
+
+        //method to calibrate minimum pitch reading
+        public static void CallibratePitchMinimumReading()
+        {
+            //_pitchMin = e.Pitch;
+            
+            
+        }
+
+
 
 
         public object PoseChanged { get; set; }

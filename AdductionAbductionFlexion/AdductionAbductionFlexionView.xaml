@@ -17,14 +17,13 @@
 
             <Grid Margin="0,0,9,0">
 
-                <TextBox HorizontalAlignment="Left" x:Name="statusTbx" Background="#141c28" Foreground="White" BorderBrush="#141c28" Height="30" Margin="0,3,0,0" TextWrapping="Wrap" Text="{Binding CurrentStatus}" VerticalAlignment="Top" Width="75"/>
-                <TextBox HorizontalAlignment="Left" x:Name="poseStatusTbx" Background="#141c28" Foreground="White" BorderBrush="#141c28" Height="39" Margin="47,241,0,0" TextWrapping="Wrap" Text="{Binding PoseStatus}" VerticalAlignment="Top" Width="75"/>
-                <TextBox HorizontalAlignment="Left" x:Name="degreeOfAbductionTbx" Background="#141c28" Foreground="White" Height="22" Margin="0,246,0,0" TextWrapping="Wrap" Text="{Binding DegreeStatus}" VerticalAlignment="Top" Width="47"/>
+                <TextBox HorizontalAlignment="Left" x:Name="statusTbx" IsReadOnly="True" Background="#141c28" Foreground="White" BorderBrush="#141c28" Height="30" Margin="0,3,0,0" TextWrapping="Wrap" Text="{Binding CurrentStatus}" VerticalAlignment="Top" Width="100"/>
+                <TextBox HorizontalAlignment="Left" IsReadOnly="True" x:Name="poseStatusTbx" Background="#141c28" Foreground="White" BorderBrush="#141c28" Height="39" Margin="47,241,0,0" TextWrapping="Wrap" Text="{Binding PoseStatus}" VerticalAlignment="Top" Width="75"/>
                 <Label Content="Arc start:" Foreground="#00bdde" HorizontalAlignment="Left" Margin="0,186,0,0" VerticalAlignment="Top" Width="57"/>
-                <Image HorizontalAlignment="Left" Source="pack://application:,,,/Images/abduction_side_trans.png" x:Name="exerciseImage" Height="100" Margin="0,33,0,0" VerticalAlignment="Top" Width="100"/>
-                <TextBox HorizontalAlignment="Left" x:Name="painfulArcEndTbx" Background="#141c28" Foreground="White" Height="22" Margin="62,217,0,0" TextWrapping="Wrap" Text="{Binding EndDegreeStatus}" VerticalAlignment="Top" Width="48"/>
+                <Image HorizontalAlignment="Left"  Source="pack://application:,,,/Images/abduction_side_trans.png" x:Name="exerciseImage" Height="100" Margin="0,33,0,0" VerticalAlignment="Top" Width="100"/>
+                <TextBox HorizontalAlignment="Left" IsReadOnly="True" x:Name="painfulArcEndTbx" Background="#141c28" Foreground="White" Height="22" Margin="62,217,0,0" TextWrapping="Wrap" Text="{Binding EndDegreeStatus}" VerticalAlignment="Top" Width="48"/>
                 <Label Content="Arc end:" Foreground="#00bdde" HorizontalAlignment="Left" Margin="0,217,0,0" VerticalAlignment="Top" Width="57"/>
-                <TextBox HorizontalAlignment="Left" x:Name="painfulArcStartTbx" Background="#141c28" Foreground="White" Height="23" Margin="62,189,0,0" TextWrapping="Wrap" Text="{Binding StartDegreeStatus}" VerticalAlignment="Top" Width="48"/>
+                <TextBox HorizontalAlignment="Left" IsReadOnly="True" x:Name="painfulArcStartTbx" Background="#141c28" Foreground="White" Height="23" Margin="62,189,0,0" TextWrapping="Wrap" Text="{Binding StartDegreeStatus}" VerticalAlignment="Top" Width="48"/>
 
             </Grid>
 
@@ -45,6 +44,10 @@
                              Value="{Binding DegreeStatus}" Grid.RowSpan="2" 
                              />
 
+                <Button Background="#141c28" Command="{Binding Path=CalibrationSetCommand}" x:Name="calibBtn" Height="40" Width="40" HorizontalAlignment="Center" VerticalAlignment="Bottom">
+                    <Image Height="34" Width="40" HorizontalAlignment="Left" VerticalAlignment="Bottom"
+                	Source="pack://application:,,,/Images/calibration_mark.png" />
+                    </Button>
             </Grid>
 
 

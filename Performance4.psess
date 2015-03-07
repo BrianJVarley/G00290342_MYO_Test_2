@@ -36,7 +36,7 @@
   </PostinstrumentEvent>
   <Binaries>
     <ProjBinary>
-      <Path>obj\x86\Release\GesturePhysio.exe</Path>
+      <Path>obj\x86\Debug\GesturePhysio.exe</Path>
       <ArgumentTimestamp>01/01/0001 00:00:00</ArgumentTimestamp>
       <Instrument>true</Instrument>
       <Sample>true</Sample>
@@ -48,8 +48,8 @@
       <LaunchProject>true</LaunchProject>
       <OverrideProjectSettings>false</OverrideProjectSettings>
       <LaunchMethod>Executable</LaunchMethod>
-      <ExecutablePath>bin\Release\GesturePhysio.exe</ExecutablePath>
-      <StartupDirectory>bin\Release\</StartupDirectory>
+      <ExecutablePath>bin\Debug\GesturePhysio.exe</ExecutablePath>
+      <StartupDirectory>bin\Debug\</StartupDirectory>
       <Arguments>
       </Arguments>
       <NetAppHost>IIS</NetAppHost>

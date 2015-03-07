@@ -29,6 +29,7 @@ namespace MyoTestv4
         {
 
             DataSubmitCommand = new RelayCommand (this.SaveChangesToPersistence);
+            CalibrationSetCommand = new RelayCommand(this.CallibratePitchMinimumCall);
 
             _myoDevice = device;
             _myoDevice.MyoDeviceStart();
@@ -181,17 +182,24 @@ namespace MyoTestv4
     
         public ICommand DataSubmitCommand { get; private set; }
 
+        public ICommand CalibrationSetCommand { get; private set; }
 
+        
         public void SaveChangesToPersistence(object param)
         {
-
-
             DatabaseModel.SubmitChangesAsync(StartDegreeStatus, EndDegreeStatus, HomeViewModel.LoginObject.UserName, HomeViewModel.LoginObject.Gender);
             this.CommitStatus = "Data committed successfully!";
 
             DataChanged(CommitStatus);
 
         }
+
+
+        public void CallibratePitchMinimumCall(object param)
+        {
+            MyoDeviceModel.CallibratePitchMinimumReading();
+        }
+
 
 
         public string Name
