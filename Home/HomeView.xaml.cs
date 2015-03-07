@@ -30,6 +30,9 @@ namespace MyoTestv4
 
         private HomeViewModel ViewModel { get; set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="HomeView"/> class.
+        /// </summary>
         public HomeView()
         {
             InitializeComponent();
@@ -40,6 +43,11 @@ namespace MyoTestv4
 
         }
 
+        /// <summary>
+        /// Handles the OnNavigated event of the WBrowser control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="NavigationEventArgs"/> instance containing the event data.</param>
         private void WBrowser_OnNavigated(object sender, NavigationEventArgs e)
         {
             ViewModel = ViewModel;

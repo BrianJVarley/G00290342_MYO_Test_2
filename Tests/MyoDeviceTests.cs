@@ -15,6 +15,9 @@ namespace MyoTestv4.Tests
     {
 
 
+        /// <summary>
+        /// Mocks the device test.
+        /// </summary>
         [Test]
         public void MockTest()
         {

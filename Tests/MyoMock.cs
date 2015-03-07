@@ -11,6 +11,9 @@ namespace MyoTestv4.Tests
     class MyoMock : IMyo
     {
 
+        /// <summary>
+        /// Occurs when [mock event].
+        /// </summary>
         public event EventHandler MockEvent;
 
 

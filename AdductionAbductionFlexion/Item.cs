@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 // <summary>Item</summary>
 namespace MyoTestv4.AdductionAbductionFlexion
 {
+    /// <summary>
+    /// Database Item Class
+    /// </summary>
     public class Item
     {
         ////get and set Item table fields

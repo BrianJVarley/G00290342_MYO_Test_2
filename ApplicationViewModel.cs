@@ -26,6 +26,9 @@ namespace MyoTestv4
 
         #endregion
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ApplicationViewModel"/> class.
+        /// </summary>
         public ApplicationViewModel()
         {
             // Add available pages
@@ -39,6 +42,12 @@ namespace MyoTestv4
 
         #region Properties / Commands
 
+        /// <summary>
+        /// Gets the change page command.
+        /// </summary>
+        /// <value>
+        /// The change page command.
+        /// </value>
         public ICommand ChangePageCommand
         {
             get
@@ -54,6 +63,12 @@ namespace MyoTestv4
             }
         }
 
+        /// <summary>
+        /// Gets the page view models.
+        /// </summary>
+        /// <value>
+        /// The page view models.
+        /// </value>
         public List<IPageViewModel> PageViewModels
         {
             get
@@ -65,6 +80,12 @@ namespace MyoTestv4
             }
         }
 
+        /// <summary>
+        /// Gets or sets the current page view model.
+        /// </summary>
+        /// <value>
+        /// The current page view model.
+        /// </value>
         public IPageViewModel CurrentPageViewModel
         {
             get
@@ -85,6 +106,10 @@ namespace MyoTestv4
 
         #region Methods
 
+        /// <summary>
+        /// Changes the view model.
+        /// </summary>
+        /// <param name="viewModel">The view model.</param>
         private void ChangeViewModel(IPageViewModel viewModel)
         {
             if (!PageViewModels.Contains(viewModel))

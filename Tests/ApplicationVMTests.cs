@@ -11,6 +11,9 @@ namespace MyoTestv4.Tests
     [TestFixture]
     public class VMTests
     {
+        /// <summary>
+        /// Tests the application view model.
+        /// </summary>
         [Test]
         public void TestApplicationViewModel()
         {

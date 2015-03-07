@@ -33,6 +33,9 @@ namespace MyoTestv4
         #region Methods
 
         //constructor
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AdductionAbductionFlexionView"/> class.
+        /// </summary>
         public AdductionAbductionFlexionView()
         {
             InitializeComponent();
@@ -53,7 +56,12 @@ namespace MyoTestv4
             };
 
         }
-        
+
+        /// <summary>
+        /// Handles the Loaded event of the AdductionAbductionFlexionView control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         void AdductionAbductionFlexionView_Loaded(object sender, RoutedEventArgs e)
         {
             Window window = Window.GetWindow(this);
@@ -62,6 +70,11 @@ namespace MyoTestv4
 
         }
 
+        /// <summary>
+        /// Handles the Closing event of the window control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.ComponentModel.CancelEventArgs"/> instance containing the event data.</param>
         public void window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
 

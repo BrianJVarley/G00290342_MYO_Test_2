@@ -12,6 +12,9 @@ using System.Windows.Data;
 
 namespace MyoTestv4.Home
 {
+    /// <summary>
+    /// BoolToNonVisibilityConverter
+    /// </summary>
     public class BoolToNonVisibilityConverter : IValueConverter
     {
 

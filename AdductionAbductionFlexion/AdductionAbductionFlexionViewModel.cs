@@ -25,6 +25,11 @@ namespace MyoTestv4
         public event Action<string> DataChanged;
 
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AdductionAbductionFlexionViewModel"/> class.
+        /// </summary>
+        /// <param name="device">The device.</param>
+        /// <param name="progressData">The progress data.</param>
         public AdductionAbductionFlexionViewModel(MyoDeviceModel device, DatabaseModel progressData)
         {
 
@@ -71,8 +76,17 @@ namespace MyoTestv4
         }
 
 
-       
+
+        /// <summary>
+        /// The commit status
+        /// </summary>
         private string commitStatus;
+        /// <summary>
+        /// Gets or sets the commit status.
+        /// </summary>
+        /// <value>
+        /// The commit status.
+        /// </value>
         public string CommitStatus
         {
             get { return this.commitStatus; }
@@ -87,7 +101,16 @@ namespace MyoTestv4
         }
 
 
+        /// <summary>
+        /// The current status
+        /// </summary>
         private string currentStatus;
+        /// <summary>
+        /// Gets or sets the current status.
+        /// </summary>
+        /// <value>
+        /// The current status.
+        /// </value>
         public string CurrentStatus
         {
             get { return this.currentStatus; }
@@ -102,7 +125,16 @@ namespace MyoTestv4
         }
 
 
+        /// <summary>
+        /// The painful arc status
+        /// </summary>
         private double painfulArcStatus;
+        /// <summary>
+        /// Gets or sets the painful arc status.
+        /// </summary>
+        /// <value>
+        /// The painful arc status.
+        /// </value>
         public double PainfulArcStatus
         {
             get { return this.painfulArcStatus; }
@@ -118,7 +150,16 @@ namespace MyoTestv4
 
 
 
+        /// <summary>
+        /// The pose status
+        /// </summary>
         private string poseStatus;
+        /// <summary>
+        /// Gets or sets the pose status.
+        /// </summary>
+        /// <value>
+        /// The pose status.
+        /// </value>
         public string PoseStatus
         {
             get { return this.poseStatus; }
@@ -133,7 +174,16 @@ namespace MyoTestv4
         }
 
 
+        /// <summary>
+        /// The degree status
+        /// </summary>
         private double degreeStatus;
+        /// <summary>
+        /// Gets or sets the degree status.
+        /// </summary>
+        /// <value>
+        /// The degree status.
+        /// </value>
         public double DegreeStatus
         {
             get { return this.degreeStatus; }
@@ -149,7 +199,16 @@ namespace MyoTestv4
 
 
 
+        /// <summary>
+        /// The end degree status
+        /// </summary>
         private double endDegreeStatus;
+        /// <summary>
+        /// Gets or sets the end degree status.
+        /// </summary>
+        /// <value>
+        /// The end degree status.
+        /// </value>
         public double EndDegreeStatus
         {
             get { return this.endDegreeStatus; }
@@ -164,7 +223,16 @@ namespace MyoTestv4
         }
 
 
+        /// <summary>
+        /// The start degree status
+        /// </summary>
         private double startDegreeStatus;
+        /// <summary>
+        /// Gets or sets the start degree status.
+        /// </summary>
+        /// <value>
+        /// The start degree status.
+        /// </value>
         public double StartDegreeStatus
         {
             get { return this.startDegreeStatus; }
@@ -179,12 +247,28 @@ namespace MyoTestv4
         }
 
 
-    
+
+        /// <summary>
+        /// Gets the data submit command.
+        /// </summary>
+        /// <value>
+        /// The data submit command.
+        /// </value>
         public ICommand DataSubmitCommand { get; private set; }
 
+        /// <summary>
+        /// Gets the calibration set command.
+        /// </summary>
+        /// <value>
+        /// The calibration set command.
+        /// </value>
         public ICommand CalibrationSetCommand { get; private set; }
 
-        
+
+        /// <summary>
+        /// Saves the changes to persistence.
+        /// </summary>
+        /// <param name="param">The parameter.</param>
         public void SaveChangesToPersistence(object param)
         {
             DatabaseModel.SubmitChangesAsync(StartDegreeStatus, EndDegreeStatus, HomeViewModel.LoginObject.UserName, HomeViewModel.LoginObject.Gender);
@@ -195,6 +279,10 @@ namespace MyoTestv4
         }
 
 
+        /// <summary>
+        /// Callibrates the pitch minimum call.
+        /// </summary>
+        /// <param name="param">The parameter.</param>
         public void CallibratePitchMinimumCall(object param)
         {
             MyoDeviceModel.CallibratePitchMinimumReading();
@@ -202,6 +290,12 @@ namespace MyoTestv4
 
 
 
+        /// <summary>
+        /// Gets the name.
+        /// </summary>
+        /// <value>
+        /// The name.
+        /// </value>
         public string Name
         {
             get

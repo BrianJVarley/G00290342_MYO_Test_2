@@ -20,6 +20,14 @@ namespace MyoTestv4.AdductionAbductionFlexion
         
         
         //method to push progress data to database
+        /// <summary>
+        /// Submits the changes asynchronous.
+        /// </summary>
+        /// <param name="StartDegreeStatus">The start degree status.</param>
+        /// <param name="EndDegreeStatus">The end degree status.</param>
+        /// <param name="UserName">Name of the user.</param>
+        /// <param name="Gender">The gender.</param>
+        /// <returns></returns>
         public static Task SubmitChangesAsync(double StartDegreeStatus, double EndDegreeStatus, string UserName, string Gender)
         {
             var table = App.MobileService.GetTable<Item>();

@@ -43,7 +43,7 @@ namespace MyoTestv4.AdductionAbductionFlexion
         //Need to calibrate start point
         //by setting PITCH_MIN to current pitch
         //when calibration button clicked.
-        private double _pitchMin = 1.46;
+        private static double _pitchMin = 1.46;
         private double _startingDegree;
         private double _endDegree;
         private double _degreeOutputDouble;
@@ -53,6 +53,9 @@ namespace MyoTestv4.AdductionAbductionFlexion
 
         #region Methods
 
+        /// <summary>
+        /// Myo Init Method.
+        /// </summary>
         public void MyoDeviceStart()
         {
             // create a hub that will manage Myo devices for us
@@ -101,6 +104,11 @@ namespace MyoTestv4.AdductionAbductionFlexion
         }
 
 
+        /// <summary>
+        /// Handles the PoseChanged event of the Myo control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="PoseEventArgs"/> instance containing the event data.</param>
         private void Myo_PoseChanged(object sender, PoseEventArgs e)
         {   
                 var handler = PoseUpdated;
@@ -113,6 +121,11 @@ namespace MyoTestv4.AdductionAbductionFlexion
         }
 
 
+        /// <summary>
+        /// Handles the OrientationDataAcquired event of the Myo control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="OrientationDataEventArgs" /> instance containing the event data.</param>
         private void Myo_OrientationDataAcquired(object sender, OrientationDataEventArgs e)
         {
 
@@ -180,6 +193,9 @@ namespace MyoTestv4.AdductionAbductionFlexion
 
 
         //method to calibrate minimum pitch reading
+        /// <summary>
+        /// Callibrates the pitch minimum reading.
+        /// </summary>
         public static void CallibratePitchMinimumReading()
         {
             //_pitchMin = e.Pitch;
@@ -190,6 +206,12 @@ namespace MyoTestv4.AdductionAbductionFlexion
 
 
 
+        /// <summary>
+        /// Gets or sets the pose changed.
+        /// </summary>
+        /// <value>
+        /// The pose changed.
+        /// </value>
         public object PoseChanged { get; set; }
     }
          

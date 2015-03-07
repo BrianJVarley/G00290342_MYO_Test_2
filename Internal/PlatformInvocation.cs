@@ -2,6 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 
+
+
+/// <summary>
+/// Internal Class from MyoSharp.dll repo.
+/// </summary>
 namespace MyoSharp.Internal
 {
     internal static class PlatformInvocation

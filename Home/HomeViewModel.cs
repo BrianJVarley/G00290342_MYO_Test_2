@@ -24,6 +24,10 @@ namespace MyoTestv4
         private static string _gender;
 
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="HomeViewModel"/> class.
+        /// </summary>
+        /// <param name="login">The login.</param>
         public HomeViewModel(UserLoginModel login)
         {
 
@@ -33,6 +37,12 @@ namespace MyoTestv4
 
         }
 
+        /// <summary>
+        /// Gets or sets a value indicating whether [logged in].
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if [logged in]; otherwise, <c>false</c>.
+        /// </value>
         public bool LoggedIn
         {
             get { return _loggedIn; }
@@ -45,6 +55,12 @@ namespace MyoTestv4
         }
 
 
+        /// <summary>
+        /// Gets or sets the gender.
+        /// </summary>
+        /// <value>
+        /// The gender.
+        /// </value>
         public static string Gender
         {
             get { return _gender; }
@@ -57,6 +73,12 @@ namespace MyoTestv4
         }
 
 
+        /// <summary>
+        /// Gets or sets the login object.
+        /// </summary>
+        /// <value>
+        /// The login object.
+        /// </value>
         public static UserLoginModel LoginObject
         {
             get { return _loginObj; }
@@ -69,6 +91,12 @@ namespace MyoTestv4
 
 
 
+        /// <summary>
+        /// Gets or sets the name of the user.
+        /// </summary>
+        /// <value>
+        /// The name of the user.
+        /// </value>
         public static string UserName
         {
             get
@@ -95,6 +123,12 @@ namespace MyoTestv4
         }
 
 
+        /// <summary>
+        /// Gets the name.
+        /// </summary>
+        /// <value>
+        /// The name.
+        /// </value>
         public string Name
         {
             get
@@ -105,6 +139,10 @@ namespace MyoTestv4
 
 
 
+        /// <summary>
+        /// Initializes the login.
+        /// </summary>
+        /// <param name="e">The <see cref="NavigationEventArgs"/> instance containing the event data.</param>
         public void initLogin(NavigationEventArgs e)
         {
 
