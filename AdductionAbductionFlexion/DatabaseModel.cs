@@ -40,10 +40,10 @@ namespace MyoTestv4.AdductionAbductionFlexion
 
 
         /// <summary>
-        /// Queries the table.
+        /// Queries the table and returns a list of table entries.
         /// </summary>
         /// <returns></returns>
-        private async void QueryTable()
+        public static async List<Item> QueryTable()
         {
             var table = App.MobileService.GetTable<Item>();
             IMobileServiceTableQuery<Item> query = table.
@@ -51,6 +51,8 @@ namespace MyoTestv4.AdductionAbductionFlexion
 
             List<Item> items = new List<Item>();
             items = await query.ToListAsync();
+
+            return items;
 
         }
          

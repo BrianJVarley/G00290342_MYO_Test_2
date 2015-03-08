@@ -44,7 +44,7 @@
                              Value="{Binding DegreeStatus}" Grid.RowSpan="2" 
                              />
 
-                <Button Background="#141c28" Command="{Binding Path=CalibrationSetCommand}" x:Name="searchBtn" Height="40" Width="40" HorizontalAlignment="Left" VerticalAlignment="Bottom">
+                <Button Background="#141c28" Command="{Binding Path=DatabaseSearchCommand}" x:Name="searchBtn" Height="40" Width="40" HorizontalAlignment="Left" VerticalAlignment="Bottom">
                     <Image Height="34" Width="33" HorizontalAlignment="Left" VerticalAlignment="Bottom"
                 		Source="/GesturePhysio;component/Images/database_icon.png" />
                 </Button>

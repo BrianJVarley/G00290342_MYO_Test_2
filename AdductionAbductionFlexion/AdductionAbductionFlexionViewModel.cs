@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using MyoTestv4.AdductionAbductionFlexion;
 using MyoTestv4.Home;
+using System.Collections.Generic;
 
 
 
@@ -35,6 +36,7 @@ namespace MyoTestv4
 
             DataSubmitCommand = new RelayCommand (this.SaveChangesToPersistence);
             CalibrationSetCommand = new RelayCommand(this.CallibratePitchMinimumCall);
+            DatabaseSearchCommand = new RelayCommand(this.QueryDataFromPersistence);
 
             _myoDevice = device;
             _myoDevice.MyoDeviceStart();
@@ -264,6 +266,14 @@ namespace MyoTestv4
         /// </value>
         public ICommand CalibrationSetCommand { get; private set; }
 
+        /// <summary>
+        /// Gets the database search command.
+        /// </summary>
+        /// <value>
+        /// The database search command.
+        /// </value>
+        public ICommand DatabaseSearchCommand { get; private set; }
+
 
         /// <summary>
         /// Saves the changes to persistence.
@@ -288,6 +298,16 @@ namespace MyoTestv4
             MyoDeviceModel.CallibratePitchMinimumReading();
         }
 
+
+        /// <summary>
+        /// Queries the data from persistence.
+        /// </summary>
+        /// <param name="param">The parameter.</param>
+        public void QueryDataFromPersistence(object param)
+        {
+            List<Item> range = DatabaseModel.QueryTable();
+        }
+        
 
 
         /// <summary>
