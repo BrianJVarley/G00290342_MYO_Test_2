@@ -43,18 +43,20 @@ namespace MyoTestv4.AdductionAbductionFlexion
         /// Queries the table and returns a list of table entries.
         /// </summary>
         /// <returns></returns>
-        public static async List<Item> QueryTable()
+  
+        public static IList<Item> QueryTable()
         {
             var table = App.MobileService.GetTable<Item>();
             IMobileServiceTableQuery<Item> query = table.
                 OrderBy(item => item.Id);
 
-            List<Item> items = new List<Item>();
-            items = await query.ToListAsync();
+            IList<Item> items = new List<Item>();
+            //items = query.ToListAsync();
 
             return items;
 
         }
+       
          
        
         

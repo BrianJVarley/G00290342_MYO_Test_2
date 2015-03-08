@@ -305,7 +305,8 @@ namespace MyoTestv4
         /// <param name="param">The parameter.</param>
         public void QueryDataFromPersistence(object param)
         {
-            List<Item> range = DatabaseModel.QueryTable();
+            IList<Item> range = DatabaseModel.QueryTable();
+            //do something with the queried data here..
         }
         
 
