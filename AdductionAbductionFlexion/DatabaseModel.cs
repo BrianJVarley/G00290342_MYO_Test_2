@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Media;
 using Mantin.Controls.Wpf;
 using Mantin.Controls.Wpf.Notification;
+using Microsoft.WindowsAzure.MobileServices;
 
 // <author>Brian Varley</author>
 // <summary>DatabaseModel</summary>
@@ -19,9 +20,9 @@ namespace MyoTestv4.AdductionAbductionFlexion
         const string ExerciseValue = "Adduction Flexion";
         
         
-        //method to push progress data to database
+       
         /// <summary>
-        /// Submits the changes asynchronous.
+        /// Submits the changes asynchronously.
         /// </summary>
         /// <param name="StartDegreeStatus">The start degree status.</param>
         /// <param name="EndDegreeStatus">The end degree status.</param>
@@ -36,18 +37,23 @@ namespace MyoTestv4.AdductionAbductionFlexion
         }
 
 
-        /*
-        //method to poll progress data from database
-        private void RefreshTodoItems()
+
+
+        /// <summary>
+        /// Queries the table.
+        /// </summary>
+        /// <returns></returns>
+        private async void QueryTable()
         {
-            Item items;
-            items = Item
-                    .OrderBy(todoItem => todoItem.Id)
-                    .Take(10)
-                    .ToCollectionView();
-            ListItems.ItemsSource = items;
+            var table = App.MobileService.GetTable<Item>();
+            IMobileServiceTableQuery<Item> query = table.
+                OrderBy(item => item.Id);
+
+            List<Item> items = new List<Item>();
+            items = await query.ToListAsync();
+
         }
-         */
+         
        
         
 
