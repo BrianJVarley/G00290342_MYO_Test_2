@@ -296,7 +296,8 @@ namespace MyoTestv4
         /// <param name="param">The parameter.</param>
         public void CallibratePitchMinimumCall(object param)
         {
-            MyoDeviceModel.CallibratePitchMinimumReading();
+            MyoDeviceModel deviceObj = new MyoDeviceModel();
+            deviceObj.CallibratePitchMinimumReading();
         }
 
 
@@ -307,7 +308,7 @@ namespace MyoTestv4
         public void QueryDataFromPersistence(object param)
         {
             Task<List<Item>> range = DatabaseModel.QueryTable();
-            //do something with the queried data here..
+            //do something with the queried data here..csv
         }
         
 

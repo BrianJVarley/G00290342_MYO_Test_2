@@ -49,6 +49,31 @@ namespace MyoTestv4.AdductionAbductionFlexion
         private double _degreeOutputDouble;
         private double _degreeOutput;
         private double _painfulArcOutput;
+
+
+        /// <summary>
+        /// The _current pitch
+        /// </summary>
+        private double _currentPitch;
+
+        /// <summary>
+        /// Gets or sets the current pitch.
+        /// </summary>
+        /// <value>
+        /// The current pitch.
+        /// </value>
+        public double CurrentPitch
+        {
+            get { return this._currentPitch; }
+            set
+            {
+                if (this._currentPitch != value)
+                {
+                    this._currentPitch = value;
+                }
+            }
+        }
+
         
 
         #region Methods
@@ -129,9 +154,9 @@ namespace MyoTestv4.AdductionAbductionFlexion
         private void Myo_OrientationDataAcquired(object sender, OrientationDataEventArgs e)
         {
 
-
+            _currentPitch = e.Pitch;
             //myo indicator must be facing down or degrees will be inverted.
-            _degreeOutputDouble = ((e.Pitch + _pitchMin) * CALLIBRATION_FACTOR);
+            _degreeOutputDouble = ((_currentPitch + _pitchMin) * CALLIBRATION_FACTOR);
             _degreeOutputDouble = Math.Round(_degreeOutputDouble, 2);
             _degreeOutput = _degreeOutputDouble;
 
@@ -196,9 +221,9 @@ namespace MyoTestv4.AdductionAbductionFlexion
         /// <summary>
         /// Callibrates the pitch minimum reading.
         /// </summary>
-        public static void CallibratePitchMinimumReading()
+        public void CallibratePitchMinimumReading()
         {
-            //_pitchMin = e.Pitch;
+            _pitchMin = _currentPitch;
             
             
         }
