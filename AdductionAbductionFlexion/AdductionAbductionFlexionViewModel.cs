@@ -26,6 +26,8 @@ namespace MyoTestv4
 
         public event Action<string> DataChanged;
 
+        private string _itemString;
+
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AdductionAbductionFlexionViewModel"/> class.
@@ -307,8 +309,16 @@ namespace MyoTestv4
         /// <param name="param">The parameter.</param>
         public void QueryDataFromPersistence(object param)
         {
-            Task<List<Item>> range = DatabaseModel.QueryTable();
+            List<Item> itemList = DatabaseModel.QueryTable().Result;
             //do something with the queried data here..csv
+            _itemString = String.Join(",", itemList);
+            using (System.IO.StreamWriter file = new System.IO.StreamWriter(@"C:\Users\Public\TestFolder\WriteLines2.txt"))
+            {
+                     
+                 file.WriteLine(_itemString);
+                
+            }
+            
         }
         
 

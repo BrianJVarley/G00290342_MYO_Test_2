@@ -37,13 +37,11 @@ namespace MyoTestv4.AdductionAbductionFlexion
         public event Action<double> EndDegreeUpdated;
         public event Action<double> PainfulArcDegreeUpdated;
         
-        //Constants
-        private const double CALLIBRATION_FACTOR = 61.64;
-        //private const double PITCH_MAX = -1.46;
-        //Need to calibrate start point
-        //by setting PITCH_MIN to current pitch
-        //when calibration button clicked.
+        private const double PITCH_MAX = 1.46;
+   
+       
         private static double _pitchMin = 1.46;
+        private double _calibrationFactor = 61.64;
         private double _startingDegree;
         private double _endDegree;
         private double _degreeOutputDouble;
@@ -156,7 +154,7 @@ namespace MyoTestv4.AdductionAbductionFlexion
 
             _currentPitch = e.Pitch;
             //myo indicator must be facing down or degrees will be inverted.
-            _degreeOutputDouble = ((_currentPitch + _pitchMin) * CALLIBRATION_FACTOR);
+            _degreeOutputDouble = ((_currentPitch + _pitchMin) * _calibrationFactor);
             _degreeOutputDouble = Math.Round(_degreeOutputDouble, 2);
             _degreeOutput = _degreeOutputDouble;
 
@@ -224,7 +222,7 @@ namespace MyoTestv4.AdductionAbductionFlexion
         public void CallibratePitchMinimumReading()
         {
             _pitchMin = _currentPitch;
-            
+            _calibrationFactor = 180 / (_pitchMin + PITCH_MAX);
             
         }
 
