@@ -307,17 +307,30 @@ namespace MyoTestv4
         /// Queries the data from persistence.
         /// </summary>
         /// <param name="param">The parameter.</param>
-        public void QueryDataFromPersistence(object param)
+        public async void QueryDataFromPersistence(object param)
         {
-            List<Item> itemList = DatabaseModel.QueryTable().Result;
+            List<Item> itemList = await DatabaseModel.QueryTable();
             //do something with the queried data here..csv
             _itemString = String.Join(",", itemList);
+         
             using (System.IO.StreamWriter file = new System.IO.StreamWriter(@"C:\Users\Public\TestFolder\WriteLines2.txt"))
             {
-                     
-                 file.WriteLine(_itemString);
+                try
+                {
+
+                    file.WriteLine(_itemString);
+
+                }
+                catch (Exception ex)
+                {
+                    //log export error
+                    ex.ToString();
+                    
+                }
+                 
                 
             }
+             
             
         }
         

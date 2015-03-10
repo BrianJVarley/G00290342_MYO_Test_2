@@ -49,6 +49,8 @@ namespace MyoTestv4.AdductionAbductionFlexion
             IMobileServiceTableQuery<Item> query = table.
                 OrderBy(item => item.User);
 
+            List<Item> itemList = await query.ToListAsync();
+
             return await query.ToListAsync();
         }
        

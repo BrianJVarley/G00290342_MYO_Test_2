@@ -18,7 +18,7 @@
             <Grid Margin="0,0,9,0">
 
                 <TextBox HorizontalAlignment="Left" x:Name="statusTbx" IsReadOnly="True" Background="#141c28" Foreground="White" BorderBrush="#141c28" Height="30" Margin="0,3,0,0" TextWrapping="Wrap" Text="{Binding CurrentStatus}" VerticalAlignment="Top" Width="100"/>
-                <TextBox HorizontalAlignment="Left" IsReadOnly="True" x:Name="poseStatusTbx" Background="#141c28" Foreground="White" BorderBrush="#141c28" Height="39" Margin="47,241,0,0" TextWrapping="Wrap" Text="{Binding PoseStatus}" VerticalAlignment="Top" Width="75"/>
+                <TextBox HorizontalAlignment="Left" IsReadOnly="True" x:Name="poseStatusTbx" Background="#141c28" Foreground="White" BorderBrush="#141c28" Height="39" Margin="36,150,0,0" TextWrapping="Wrap" Text="{Binding PoseStatus}" VerticalAlignment="Top" Width="75"/>
                 <Label Content="Arc start:" Foreground="#00bdde" HorizontalAlignment="Left" Margin="0,186,0,0" VerticalAlignment="Top" Width="57"/>
                 <Image HorizontalAlignment="Left"  Source="pack://application:,,,/Images/abduction_side_trans.png" x:Name="exerciseImage" Height="100" Margin="0,33,0,0" VerticalAlignment="Top" Width="100"/>
                 <TextBox HorizontalAlignment="Left" IsReadOnly="True" x:Name="painfulArcEndTbx" Background="#141c28" Foreground="White" Height="22" Margin="62,217,0,0" TextWrapping="Wrap" Text="{Binding EndDegreeStatus}" VerticalAlignment="Top" Width="48"/>
@@ -46,7 +46,7 @@
 
                 <Button Background="#141c28" Command="{Binding Path=DatabaseSearchCommand}" x:Name="searchBtn" Height="40" Width="40" HorizontalAlignment="Left" VerticalAlignment="Bottom">
                     <Image Height="34" Width="33" HorizontalAlignment="Left" VerticalAlignment="Bottom"
-                		Source="/GesturePhysio;component/Images/database_icon.png" />
+                		Source="/GesturePhysio;component/Images/export_icon.png" />
                 </Button>
 
                 <Button Background="#141c28" Command="{Binding Path=CalibrationSetCommand}" x:Name="calibBtn" Height="40" Width="40" HorizontalAlignment="Center" VerticalAlignment="Bottom">
@@ -61,7 +61,10 @@
 
 
             <TextBlock HorizontalAlignment="Left" x:Name="repCntTblk" Margin="9,43,0,0" TextWrapping="Wrap" Text="" FontSize="38" Foreground="#00bdde" VerticalAlignment="Top" Width="34" Height="41" Grid.Column="1"/>
-            <Button Content="Submit" x:Name="submitBtn" Command="{Binding Path=DataSubmitCommand}" IsDefault="True" IsCancel="True" HorizontalAlignment="Left"  Background="#00bdde" Foreground="White" Margin="0,148,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.76,5.093" Height="20"/>
+            <Button Background="#141c28" Command="{Binding Path=DataSubmitCommand}" x:Name="submitBtn" Height="40" Width="40" HorizontalAlignment="Left" VerticalAlignment="Bottom">
+                <Image Height="34" Width="33" HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                		Source="/GesturePhysio;component/Images/save_icon.png" />
+            </Button>
 
         </Grid>
     </Viewbox>
