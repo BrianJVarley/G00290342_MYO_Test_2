@@ -9,6 +9,8 @@ using MyoTestv4.AdductionAbductionFlexion;
 using MyoTestv4.Home;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.IO;
+using System.Linq;
 
 
 
@@ -311,9 +313,11 @@ namespace MyoTestv4
         {
             List<Item> itemList = await DatabaseModel.QueryTable();
             //do something with the queried data here..csv
-            _itemString = String.Join(",", itemList);
+            _itemString = String.Join(",", itemList.Select(i => String.Format("{0},{1},{2},{3},{4}", i.Date, i.User, i.Exercise, i.Painful_Arc_Start, i.Painful_Arc_End)));
+
+            string folder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop),"PatientRecords.txt");
          
-            using (System.IO.StreamWriter file = new System.IO.StreamWriter(@"C:\Users\Public\TestFolder\WriteLines2.txt"))
+            using (System.IO.StreamWriter file = new System.IO.StreamWriter(folder))
             {
                 try
                 {
