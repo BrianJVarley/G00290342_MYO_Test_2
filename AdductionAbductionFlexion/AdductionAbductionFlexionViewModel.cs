@@ -80,6 +80,8 @@ namespace MyoTestv4
             {
                 EndDegreeStatus = update;    
             };
+
+            
         }
 
 
@@ -253,8 +255,7 @@ namespace MyoTestv4
             }
         }
 
-
-
+        
         /// <summary>
         /// Gets the data submit command.
         /// </summary>
@@ -300,8 +301,8 @@ namespace MyoTestv4
         /// <param name="param">The parameter.</param>
         public void CallibratePitchMinimumCall(object param)
         {
-            MyoDeviceModel deviceObj = new MyoDeviceModel();
-            deviceObj.CallibratePitchMinimumReading();
+
+            _myoDevice.CallibratePitchMinimumReading();
         }
 
 
@@ -313,7 +314,7 @@ namespace MyoTestv4
         {
             List<Item> itemList = await DatabaseModel.QueryTable();
             //do something with the queried data here..csv
-            _itemString = String.Join(",", itemList.Select(i => String.Format("{0},{1},{2},{3},{4}", i.Date, i.User, i.Exercise, i.Painful_Arc_Start, i.Painful_Arc_End)));
+            _itemString = String.Join(",", itemList.Select(i => String.Format("{0},{1},{2},{3},{4}" + Environment.NewLine, i.Date, i.User, i.Exercise, i.Painful_Arc_Start, i.Painful_Arc_End)));
 
             string folder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop),"PatientRecords.txt");
          

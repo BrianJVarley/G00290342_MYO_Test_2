@@ -18,6 +18,7 @@ using Microsoft.WindowsAzure.MobileServices;
 using MyoTestv4.AdductionAbductionFlexion;
 using MyoSharp.Poses;
 using System.ComponentModel;
+using System.Diagnostics;
 
 
 // <author>Brian Varley</author>
@@ -37,6 +38,7 @@ namespace MyoTestv4.AdductionAbductionFlexion
         public event Action<double> EndDegreeUpdated;
         public event Action<double> PainfulArcDegreeUpdated;
         
+        
         private const double PITCH_MAX = 1.46;
    
        
@@ -47,30 +49,10 @@ namespace MyoTestv4.AdductionAbductionFlexion
         private double _degreeOutputDouble;
         private double _degreeOutput;
         private double _painfulArcOutput;
+       
+        
 
-
-        /// <summary>
-        /// The _current pitch
-        /// </summary>
-        private double _currentPitch;
-
-        /// <summary>
-        /// Gets or sets the current pitch.
-        /// </summary>
-        /// <value>
-        /// The current pitch.
-        /// </value>
-        public double CurrentPitch
-        {
-            get { return this._currentPitch; }
-            set
-            {
-                if (this._currentPitch != value)
-                {
-                    this._currentPitch = value;
-                }
-            }
-        }
+       
 
         
 
@@ -151,8 +133,12 @@ namespace MyoTestv4.AdductionAbductionFlexion
         /// <param name="e">The <see cref="OrientationDataEventArgs" /> instance containing the event data.</param>
         private void Myo_OrientationDataAcquired(object sender, OrientationDataEventArgs e)
         {
-
+            
+           
             _currentPitch = e.Pitch;
+            //Debug.WriteLine(e.Pitch);
+            
+            
             //myo indicator must be facing down or degrees will be inverted.
             _degreeOutputDouble = ((_currentPitch + _pitchMin) * _calibrationFactor);
             _degreeOutputDouble = Math.Round(_degreeOutputDouble, 2);
@@ -194,6 +180,7 @@ namespace MyoTestv4.AdductionAbductionFlexion
                 if (_endDegree == 0)
                 {
                     _endDegree = _degreeOutput;
+                    
                 }
                 var handlerArcEnd = EndDegreeUpdated;
                 if (handlerArcEnd != null)
@@ -221,21 +208,34 @@ namespace MyoTestv4.AdductionAbductionFlexion
         /// </summary>
         public void CallibratePitchMinimumReading()
         {
+            
             _pitchMin = _currentPitch;
-            _calibrationFactor = 180 / (_pitchMin + PITCH_MAX);
+            //_calibrationFactor = 180 / (_pitchMin + PITCH_MAX);
+       
+           
             
         }
 
 
-
-
         /// <summary>
-        /// Gets or sets the pose changed.
+        /// The _current pitch
+        /// </summary>
+        private double _currentPitch = 0;
+        /// Gets or sets the current pitch.
         /// </summary>
         /// <value>
-        /// The pose changed.
+        /// The current pitch.
         /// </value>
-        public object PoseChanged { get; set; }
+        public double CurrentPitch
+        {
+            get { return this._currentPitch; }
+            set
+            {
+                this._currentPitch = value;
+              
+            }
+        }
+        
     }
          
 }

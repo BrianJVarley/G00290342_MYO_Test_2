@@ -18,7 +18,7 @@
             <Grid Margin="0,0,9,0">
 
                 <TextBox HorizontalAlignment="Left" x:Name="statusTbx" IsReadOnly="True" Background="#141c28" Foreground="White" BorderBrush="#141c28" Height="30" Margin="0,3,0,0" TextWrapping="Wrap" Text="{Binding CurrentStatus}" VerticalAlignment="Top" Width="100"/>
-                <TextBox HorizontalAlignment="Left" IsReadOnly="True" x:Name="poseStatusTbx" Background="#141c28" Foreground="White" BorderBrush="#141c28" Height="39" Margin="36,150,0,0" TextWrapping="Wrap" Text="{Binding PoseStatus}" VerticalAlignment="Top" Width="75"/>
+                <TextBox HorizontalAlignment="Left" IsReadOnly="True" x:Name="poseStatusTbx" Background="#141c28" Foreground="White" BorderBrush="#141c28" Height="39" Margin="0,150,0,0" TextWrapping="Wrap" Text="{Binding PoseStatus}" VerticalAlignment="Top" Width="110"/>
                 <Label Content="Arc start:" Foreground="#00bdde" HorizontalAlignment="Left" Margin="0,186,0,0" VerticalAlignment="Top" Width="57"/>
                 <Image HorizontalAlignment="Left"  Source="pack://application:,,,/Images/abduction_side_trans.png" x:Name="exerciseImage" Height="100" Margin="0,33,0,0" VerticalAlignment="Top" Width="100"/>
                 <TextBox HorizontalAlignment="Left" IsReadOnly="True" x:Name="painfulArcEndTbx" Background="#141c28" Foreground="White" Height="22" Margin="62,217,0,0" TextWrapping="Wrap" Text="{Binding EndDegreeStatus}" VerticalAlignment="Top" Width="48"/>
@@ -30,18 +30,21 @@
             <Grid Grid.Column = "1">
                 <gauges:AngularGauge Panel.ZIndex="0"
                              Grid.Row="0"
-                             Grid.Column="1"
                              FontSize="10"
-                             Height="200"
+                             Height="220"
+                             Background="AliceBlue"        
                              MajorTickFrequency="10"
+                             HorizontalAlignment="Stretch"
+                             VerticalAlignment="Top"        
                              MajorTicks="10"
                              MaxAngle="-90"
                              Maximum="180"
                              MinAngle="-270"
                              Minimum="0"
                              MinorTickFrequency="2"
+                             Foreground="AliceBlue"
                              Style="{StaticResource FatAngular}"
-                             Value="{Binding DegreeStatus}" Grid.RowSpan="2" 
+                             Value="{Binding DegreeStatus}" Margin="0,0,-77,0" Width="Auto" 
                              />
 
                 <Button Background="#141c28" Command="{Binding Path=DatabaseSearchCommand}" x:Name="searchBtn" Height="40" Width="40" HorizontalAlignment="Left" VerticalAlignment="Bottom">
@@ -54,7 +57,7 @@
                 		Source="/GesturePhysio;component/Images/calibration_icon.png" />
                 </Button>
 
-                
+
             </Grid>
 
 
