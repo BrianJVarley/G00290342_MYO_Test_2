@@ -138,9 +138,13 @@ namespace MyoTestv4.AdductionAbductionFlexion
             
             //myo indicator must be facing down or degrees will be inverted.
             _degreeOutputDouble = ((_currentPitch + _pitchMin) * _calibrationFactor);
-            //Debug.WriteLine("ONE: " + _pitchMin);
+            //Debug.WriteLine("New pitch min: " + _pitchMin);
             _degreeOutputDouble = Math.Round(_degreeOutputDouble, 2);
             _degreeOutput = _degreeOutputDouble;
+
+            double calibCheck = _calibrationFactor;
+            //Debug.WriteLine("New calibration: " + calibCheck);
+            //Debug.WriteLine("Current pitch: " + _currentPitch);
 
             var handler = DegreesUpdated;
             if (handler != null)
@@ -208,10 +212,9 @@ namespace MyoTestv4.AdductionAbductionFlexion
         {
             
             _pitchMin = _currentPitch;
-            //_calibrationFactor = 180 / (_pitchMin + PITCH_MAX);
-           // Debug.WriteLine("TWO: " + _pitchMin);
-       
-           
+            //Debug.WriteLine("TWO: " + _pitchMin);
+            _calibrationFactor = 180 / (Math.Abs(_pitchMin) + PITCH_MAX);
+        
             
         }
 
