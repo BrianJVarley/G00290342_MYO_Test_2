@@ -52,7 +52,7 @@
                 		Source="/GesturePhysio;component/Images/export_icon.png" />
                 </Button>
 
-                <Button Background="#141c28" Command="{Binding Path=CalibrationSetCommand}" x:Name="calibBtn" Height="40" Width="40" HorizontalAlignment="Center" VerticalAlignment="Bottom">
+                <Button Background="#141c28" IsEnabled="False" Command="{Binding Path=CalibrationSetCommand}" x:Name="calibBtn" Height="40" Width="40" HorizontalAlignment="Center" VerticalAlignment="Bottom">
                     <Image Height="34" Width="33" HorizontalAlignment="Left" VerticalAlignment="Bottom"
                 		Source="/GesturePhysio;component/Images/calibration_icon.png" />
                 </Button>

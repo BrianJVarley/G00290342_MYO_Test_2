@@ -287,7 +287,7 @@ namespace MyoTestv4
         /// <param name="param">The parameter.</param>
         public void SaveChangesToPersistence(object param)
         {
-            DatabaseModel.SubmitChangesAsync(StartDegreeStatus, EndDegreeStatus, HomeViewModel.LoginObject.UserName, HomeViewModel.LoginObject.Gender);
+            DatabaseModel.SubmitChangesAsync(StartDegreeStatus, EndDegreeStatus, HomeViewModel.LoginObject.UserName, HomeViewModel.LoginObject.Gender, DegreeStatus);
             this.CommitStatus = "Data committed successfully!";
 
             DataChanged(CommitStatus);
@@ -314,7 +314,7 @@ namespace MyoTestv4
         {
             List<Item> itemList = await DatabaseModel.QueryTable();
             //do something with the queried data here..csv
-            _itemString = String.Join(",", itemList.Select(i => String.Format("{0},{1},{2},{3},{4}" + Environment.NewLine, i.Date, i.User, i.Exercise, i.Painful_Arc_Start, i.Painful_Arc_End)));
+            _itemString = String.Join(",", itemList.Select(i => String.Format("{0},{1},{2},{3},{4},,{5}" + Environment.NewLine, i.Date, i.User, i.Exercise, i.Painful_Arc_Start, i.Painful_Arc_End, i.Max_Range)));
 
             string folder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop),"PatientRecords.txt");
          
