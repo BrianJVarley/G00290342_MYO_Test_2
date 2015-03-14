@@ -28,6 +28,8 @@ namespace MyoTestv4.AdductionAbductionFlexion
     public class MyoDeviceModel
     {
 
+        public static readonly MyoDeviceModel Instance = new MyoDeviceModel();
+
         private IChannel channel;
         private IHub hub;
 
@@ -37,11 +39,7 @@ namespace MyoTestv4.AdductionAbductionFlexion
         public event Action<double> StartDegreeUpdated;
         public event Action<double> EndDegreeUpdated;
         public event Action<double> PainfulArcDegreeUpdated;
-        
-        
         private const double PITCH_MAX = 1.46;
-   
-       
         private static double _pitchMin = 1.46;
         private double _calibrationFactor = 61.64;
         private double _startingDegree;
@@ -49,12 +47,14 @@ namespace MyoTestv4.AdductionAbductionFlexion
         private double _degreeOutputDouble;
         private double _degreeOutput;
         private double _painfulArcOutput;
-       
-        
 
-       
+        /// <summary>
+        /// Prevents a default instance of the <see cref="MyoDeviceModel"/> class from being created.
+        /// </summary>
+        private MyoDeviceModel()
+        {
 
-        
+        }
 
         #region Methods
 
@@ -67,7 +67,7 @@ namespace MyoTestv4.AdductionAbductionFlexion
             this.channel = Channel.Create(ChannelDriver.Create(ChannelBridge.Create()));
             hub = Hub.Create(channel);
             {
-               // listen for when the Myo connects
+                // listen for when the Myo connects
                 this.hub.MyoConnected += (sender, e) =>
                 {
                     var handler = StatusUpdated;
@@ -75,22 +75,15 @@ namespace MyoTestv4.AdductionAbductionFlexion
                     {
                         handler("Connected!");
                     }
-                        
                     e.Myo.Vibrate(VibrationType.Short);
-
                     // unlock the Myo so that it doesn't keep locking between poses
                     e.Myo.Unlock(UnlockType.Hold);
-
                     e.Myo.PoseChanged += Myo_PoseChanged;
-
                     e.Myo.OrientationDataAcquired += Myo_OrientationDataAcquired;
-
                 };
-
                 // listen for when the Myo disconnects
                 hub.MyoDisconnected += (sender, e) =>
                 {
-
                     var handler = StatusUpdated;
                     if (handler != null)
                     {
@@ -99,15 +92,11 @@ namespace MyoTestv4.AdductionAbductionFlexion
                     e.Myo.Vibrate(VibrationType.Medium);
                     e.Myo.OrientationDataAcquired -= Myo_OrientationDataAcquired;
                     e.Myo.PoseChanged -= Myo_PoseChanged;
-                        
-                 
                 };
-
                 // start listening for Myo data
                 channel.StartListening();
             }
         }
-
 
         /// <summary>
         /// Handles the PoseChanged event of the Myo control.
@@ -115,16 +104,14 @@ namespace MyoTestv4.AdductionAbductionFlexion
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="PoseEventArgs"/> instance containing the event data.</param>
         private void Myo_PoseChanged(object sender, PoseEventArgs e)
-        {   
-                var handler = PoseUpdated;
-                if (handler != null)
-                {
-                    handler(e.Myo.Pose.ToString());
-                }
-
-                e.Myo.Vibrate(VibrationType.Short);
+        {
+            var handler = PoseUpdated;
+            if (handler != null)
+            {
+                handler(e.Myo.Pose.ToString());
+            }
+            e.Myo.Vibrate(VibrationType.Short);
         }
-
 
         /// <summary>
         /// Handles the OrientationDataAcquired event of the Myo control.
@@ -133,9 +120,7 @@ namespace MyoTestv4.AdductionAbductionFlexion
         /// <param name="e">The <see cref="OrientationDataEventArgs" /> instance containing the event data.</param>
         private void Myo_OrientationDataAcquired(object sender, OrientationDataEventArgs e)
         {
-            
             _currentPitch = e.Pitch;
-            
             //myo indicator must be facing down or degrees will be inverted.
             _degreeOutputDouble = ((_currentPitch + _pitchMin) * _calibrationFactor);
             //Debug.WriteLine("New pitch min: " + _pitchMin);
@@ -143,9 +128,9 @@ namespace MyoTestv4.AdductionAbductionFlexion
             _degreeOutput = _degreeOutputDouble;
 
             double calibCheck = _calibrationFactor;
-            //Debug.WriteLine("New calibration: " + calibCheck);
-            //Debug.WriteLine("Current pitch: " + _currentPitch);
-
+            Debug.WriteLine("New calibration: " + calibCheck);
+            Debug.WriteLine("calibration hash code: " + this.GetHashCode());
+            Debug.WriteLine("Current pitch: " + _currentPitch);
             var handler = DegreesUpdated;
             if (handler != null)
             {
@@ -155,11 +140,9 @@ namespace MyoTestv4.AdductionAbductionFlexion
             //painful arc logic
             if (e.Myo.Pose == Pose.Fist)
             {
-
                 //provide haptic feedback, to indicate that 
                 //painfull arc is being tracked.
                 // e.Myo.Vibrate(VibrationType.Short);//buggy
-
                 _endDegree = 0;
                 if (_startingDegree == 0)
                 {
@@ -169,40 +152,28 @@ namespace MyoTestv4.AdductionAbductionFlexion
                 if (handlerArcStart != null)
                 {
                     handlerArcStart(_startingDegree);
-
-
                 }
-
-
             }
-
             else
             {
                 _startingDegree = 0;
                 if (_endDegree == 0)
                 {
                     _endDegree = _degreeOutput;
-                    
                 }
                 var handlerArcEnd = EndDegreeUpdated;
                 if (handlerArcEnd != null)
                 {
                     handlerArcEnd(_endDegree);
-
                     _painfulArcOutput = _endDegree - _startingDegree;
                     var handlerPainfulArc = PainfulArcDegreeUpdated;
                     if (handlerPainfulArc != null)
                     {
                         handlerPainfulArc(_painfulArcOutput);
-                        
                     }
-
                 }
-
             }
         }
-
-
 
         //method to calibrate minimum pitch reading
         /// <summary>
@@ -210,14 +181,10 @@ namespace MyoTestv4.AdductionAbductionFlexion
         /// </summary>
         public void CallibratePitchMinimumReading()
         {
-            
             _pitchMin = _currentPitch;
             //Debug.WriteLine("TWO: " + _pitchMin);
             _calibrationFactor = 180 / (Math.Abs(_pitchMin) + PITCH_MAX);
-        
-            
         }
-
 
         /// <summary>
         /// The _current pitch
@@ -234,15 +201,14 @@ namespace MyoTestv4.AdductionAbductionFlexion
             set
             {
                 this._currentPitch = value;
-                
-              
+
             }
         }
-        
+
     }
-         
+
 }
 
- #endregion
+        #endregion
 
 

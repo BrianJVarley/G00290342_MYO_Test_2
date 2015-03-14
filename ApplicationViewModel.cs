@@ -9,10 +9,7 @@ using System.Windows.Input;
 
 // <author>Brian Varley</author>
 // <summary>Helper ApplicationViewModel class adapted from this
-//example: http://rachel53461.wordpress.com/2011/12/18/navigation-with-mvvm-2/ </summary>
-
-
-
+//example: http://rachel53461.wordpress.com/2011/12/18/navigation-with-mvvm-2/ </summary
 namespace MyoTestv4
 {
     public class ApplicationViewModel : ObservableObject
@@ -20,9 +17,10 @@ namespace MyoTestv4
         #region Fields
 
         private ICommand _changePageCommand;
-
         private IPageViewModel _currentPageViewModel;
         private List<IPageViewModel> _pageViewModels;
+
+
 
         #endregion
 
@@ -33,8 +31,7 @@ namespace MyoTestv4
         {
             // Add available pages
             PageViewModels.Add(new HomeViewModel(new UserLoginModel()));
-            PageViewModels.Add(new AdductionAbductionFlexionViewModel(new MyoDeviceModel(), new DatabaseModel()));
-       
+            PageViewModels.Add(new AdductionAbductionFlexionViewModel(MyoDeviceModel.Instance, new DatabaseModel()));
 
             // Set starting page
             CurrentPageViewModel = PageViewModels[0];

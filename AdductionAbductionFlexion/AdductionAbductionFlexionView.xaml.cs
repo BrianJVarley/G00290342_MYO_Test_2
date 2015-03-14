@@ -25,13 +25,10 @@ using Mantin.Controls.Wpf.Notification;
 
 namespace MyoTestv4
 {
-    
+
     public partial class AdductionAbductionFlexionView : UserControl
     {
-        
-
         #region Methods
-
         //constructor
         /// <summary>
         /// Initializes a new instance of the <see cref="AdductionAbductionFlexionView"/> class.
@@ -39,22 +36,19 @@ namespace MyoTestv4
         public AdductionAbductionFlexionView()
         {
             InitializeComponent();
-            this.DataContext = new AdductionAbductionFlexionViewModel(new MyoDeviceModel(), new DatabaseModel()); 
+            this.DataContext = MyoDeviceModel.Instance;
             this.Loaded += AdductionAbductionFlexionView_Loaded;
             this.Loaded -= AdductionAbductionFlexionView_Loaded;
 
             ((AdductionAbductionFlexionViewModel)DataContext).DataChanged += x =>
             {
-           
                 new ToastPopUp("Submit Succeeded!", "Progress data submitted succesfully", NotificationType.Information)
                 {
                     Background = new LinearGradientBrush(System.Windows.Media.Color.FromRgb(0, 189, 222), System.Windows.Media.Color.FromArgb(255, 10, 13, 248), 90),
                     BorderBrush = new SolidColorBrush(System.Windows.Media.Color.FromRgb(0, 189, 222)),
                     FontColor = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 255, 255))
                 }.Show();
-            
             };
-
         }
 
         /// <summary>
@@ -66,8 +60,6 @@ namespace MyoTestv4
         {
             Window window = Window.GetWindow(this);
             window.Closing += new CancelEventHandler(window_Closing);
-
-
         }
 
         /// <summary>
@@ -77,8 +69,6 @@ namespace MyoTestv4
         /// <param name="e">The <see cref="System.ComponentModel.CancelEventArgs"/> instance containing the event data.</param>
         public void window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
-
             MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("Are you sure?", "Leave Application", System.Windows.MessageBoxButton.YesNo);
             if (messageBoxResult == MessageBoxResult.Yes)
             {
@@ -88,14 +78,7 @@ namespace MyoTestv4
             {
                 e.Cancel = true;
             }
-
         }
-
         #endregion
-
-        
-
-        
-     
     }
 }

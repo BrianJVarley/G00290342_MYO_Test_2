@@ -1,11 +1,12 @@
 ﻿<UserControl x:Class="MyoTestv4.HomeView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:l="clr-namespace:MyoTestv4.Home" 
-             mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:l="clr-namespace:MyoTestv4.Home"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             d:DesignHeight="300"
+             d:DesignWidth="300"
+             mc:Ignorable="d">
 
     <UserControl.Resources>
         <l:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
@@ -14,9 +15,25 @@
 
 
     <Grid>
-        <WebBrowser Name="WBrowser" Navigated="WBrowser_OnNavigated" Visibility="{Binding LoggedIn, Converter={StaticResource BoolToNonVisibilityConverter}}" />
-        <TextBlock TextWrapping="Wrap" Background="#00bdde" Text="Logged In.." Foreground="White" FontSize="25" Visibility="{Binding LoggedIn, Converter={StaticResource BoolToVisibilityConverter}}"  FontFamily="Segoe UI Light" Name="TBInfos" />
-        <Image HorizontalAlignment="Left" x:Name="imgProfile" Height="100" Margin="190,10,0,0" VerticalAlignment="Top" Width="100"/>
+        <WebBrowser Name="WBrowser"
+                    Navigated="WBrowser_OnNavigated"
+                    Visibility="{Binding LoggedIn,
+                                         Converter={StaticResource BoolToNonVisibilityConverter}}" />
+        <TextBlock Name="TBInfos"
+                   Background="#00bdde"
+                   FontFamily="Segoe UI Light"
+                   FontSize="25"
+                   Foreground="White"
+                   Text="Logged In.."
+                   TextWrapping="Wrap"
+                   Visibility="{Binding LoggedIn,
+                                        Converter={StaticResource BoolToVisibilityConverter}}" />
+        <Image x:Name="imgProfile"
+               Width="100"
+               Height="100"
+               Margin="190,10,0,0"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Top" />
 
     </Grid>
 </UserControl>

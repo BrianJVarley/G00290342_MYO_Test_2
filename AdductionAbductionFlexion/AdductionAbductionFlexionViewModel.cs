@@ -23,29 +23,22 @@ namespace MyoTestv4
     {
         private MyoDeviceModel _myoDevice;
         private DatabaseModel _dataObj;
-        
-        
-
         public event Action<string> DataChanged;
-
         private string _itemString;
-
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AdductionAbductionFlexionViewModel"/> class.
         /// </summary>
-        /// <param name="device">The device.</param>
+        /// <param name="Myodevice">The device.</param>
         /// <param name="progressData">The progress data.</param>
-        public AdductionAbductionFlexionViewModel(MyoDeviceModel device, DatabaseModel progressData)
+        public AdductionAbductionFlexionViewModel(MyoDeviceModel Myodevice, DatabaseModel progressData)
         {
-
             DataSubmitCommand = new RelayCommand (this.SaveChangesToPersistence);
             CalibrationSetCommand = new RelayCommand(this.CallibratePitchMinimumCall);
             DatabaseSearchCommand = new RelayCommand(this.QueryDataFromPersistence);
 
-            _myoDevice = device;
+            _myoDevice = Myodevice;
             _myoDevice.MyoDeviceStart();
-
             _dataObj = progressData;
 
             _myoDevice.StatusUpdated += (update) =>
@@ -53,18 +46,15 @@ namespace MyoTestv4
                 CurrentStatus = update;   
             };
 
-
             _myoDevice.PoseUpdated += (update) =>
             {
                 PoseStatus = update;   
             };
 
-
             _myoDevice.PainfulArcDegreeUpdated += (update) =>
             {
                 PainfulArcStatus = update;
             };
-
 
             _myoDevice.DegreesUpdated += (update) =>
             {
@@ -79,12 +69,8 @@ namespace MyoTestv4
             _myoDevice.EndDegreeUpdated += (update) =>
             {
                 EndDegreeStatus = update;    
-            };
-
-            
+            };    
         }
-
-
 
         /// <summary>
         /// The commit status
@@ -109,7 +95,6 @@ namespace MyoTestv4
             }
         }
 
-
         /// <summary>
         /// The current status
         /// </summary>
@@ -132,7 +117,6 @@ namespace MyoTestv4
                 }
             }
         }
-
 
         /// <summary>
         /// The painful arc status
@@ -157,8 +141,6 @@ namespace MyoTestv4
             }
         }
 
-
-
         /// <summary>
         /// The pose status
         /// </summary>
@@ -181,7 +163,6 @@ namespace MyoTestv4
                 }
             }
         }
-
 
         /// <summary>
         /// The degree status
@@ -206,8 +187,6 @@ namespace MyoTestv4
             }
         }
 
-
-
         /// <summary>
         /// The end degree status
         /// </summary>
@@ -230,7 +209,6 @@ namespace MyoTestv4
                 }
             }
         }
-
 
         /// <summary>
         /// The start degree status
@@ -255,7 +233,6 @@ namespace MyoTestv4
             }
         }
 
-        
         /// <summary>
         /// Gets the data submit command.
         /// </summary>
@@ -289,11 +266,8 @@ namespace MyoTestv4
         {
             DatabaseModel.SubmitChangesAsync(StartDegreeStatus, EndDegreeStatus, HomeViewModel.LoginObject.UserName, HomeViewModel.LoginObject.Gender, DegreeStatus);
             this.CommitStatus = "Data committed successfully!";
-
             DataChanged(CommitStatus);
-
         }
-
 
         /// <summary>
         /// Callibrates the pitch minimum call.
@@ -301,10 +275,8 @@ namespace MyoTestv4
         /// <param name="param">The parameter.</param>
         public void CallibratePitchMinimumCall(object param)
         {
-
             _myoDevice.CallibratePitchMinimumReading();
         }
-
 
         /// <summary>
         /// Queries the data from persistence.
@@ -313,34 +285,33 @@ namespace MyoTestv4
         public async void QueryDataFromPersistence(object param)
         {
             List<Item> itemList = await DatabaseModel.QueryTable();
+            ExportToCSV(itemList);         
+        }
+
+        /// <summary>
+        /// Exports to CSV.
+        /// </summary>
+        /// <param name="itemList">The item list.</param>
+        private void ExportToCSV(List<Item> itemList)
+        {
             //do something with the queried data here..csv
             _itemString = String.Join(",", itemList.Select(i => String.Format("{0},{1},{2},{3},{4},,{5}" + Environment.NewLine, i.Date, i.User, i.Exercise, i.Painful_Arc_Start, i.Painful_Arc_End, i.Max_Range)));
+            string folder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "PatientRecords.txt");
 
-            string folder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop),"PatientRecords.txt");
-         
             using (System.IO.StreamWriter file = new System.IO.StreamWriter(folder))
             {
                 try
                 {
-
                     file.WriteLine(_itemString);
-
                 }
                 catch (Exception ex)
                 {
                     //log export error
                     ex.ToString();
-                    
                 }
-                 
-                
             }
-             
-            
         }
-        
-
-
+       
         /// <summary>
         /// Gets the name.
         /// </summary>
