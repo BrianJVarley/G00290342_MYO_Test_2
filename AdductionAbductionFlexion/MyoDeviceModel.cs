@@ -123,14 +123,16 @@ namespace MyoTestv4.AdductionAbductionFlexion
             _currentPitch = e.Pitch;
             //myo indicator must be facing down or degrees will be inverted.
             _degreeOutputDouble = ((_currentPitch + _pitchMin) * _calibrationFactor);
-            //Debug.WriteLine("New pitch min: " + _pitchMin);
             _degreeOutputDouble = Math.Round(_degreeOutputDouble, 2);
             _degreeOutput = _degreeOutputDouble;
 
             double calibCheck = _calibrationFactor;
-            Debug.WriteLine("New calibration: " + calibCheck);
-            Debug.WriteLine("calibration hash code: " + this.GetHashCode());
-            Debug.WriteLine("Current pitch: " + _currentPitch);
+            //Debug.WriteLine("Calibration value: " + calibCheck);
+            //Debug.WriteLine("calibration hash code: " + this.GetHashCode());
+            Debug.WriteLine("degree output: " + _degreeOutputDouble);
+            //Debug.WriteLine("degree hash: " + this.GetHashCode());
+
+            //Debug.WriteLine("Current pitch: " + _currentPitch);
             var handler = DegreesUpdated;
             if (handler != null)
             {
@@ -182,8 +184,9 @@ namespace MyoTestv4.AdductionAbductionFlexion
         public void CallibratePitchMinimumReading()
         {
             _pitchMin = _currentPitch;
-            //Debug.WriteLine("TWO: " + _pitchMin);
             _calibrationFactor = 180 / (Math.Abs(_pitchMin) + PITCH_MAX);
+            Math.Round(_calibrationFactor, 2);
+            _degreeOutputDouble = ((_currentPitch + Math.Abs(_pitchMin)) * _calibrationFactor);
         }
 
         /// <summary>

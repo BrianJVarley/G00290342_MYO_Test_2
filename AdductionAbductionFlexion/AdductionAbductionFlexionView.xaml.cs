@@ -36,9 +36,9 @@ namespace MyoTestv4
         public AdductionAbductionFlexionView()
         {
             InitializeComponent();
-            this.DataContext = MyoDeviceModel.Instance;
+            this.DataContext = new AdductionAbductionFlexionViewModel(MyoDeviceModel.Instance, new DatabaseModel());
             this.Loaded += AdductionAbductionFlexionView_Loaded;
-            this.Loaded -= AdductionAbductionFlexionView_Loaded;
+            
 
             ((AdductionAbductionFlexionViewModel)DataContext).DataChanged += x =>
             {
