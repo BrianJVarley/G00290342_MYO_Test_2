@@ -39,7 +39,10 @@ namespace MyoTestv4.AdductionAbductionFlexion
         public event Action<double> StartDegreeUpdated;
         public event Action<double> EndDegreeUpdated;
         public event Action<double> PainfulArcDegreeUpdated;
+        public event Action<double> PitchUpdated;
+
         private const double PITCH_MAX = 1.46;
+
         private static double _pitchMin = 1.46;
         private double _calibrationFactor = 61.64;
         private double _startingDegree;
@@ -47,6 +50,7 @@ namespace MyoTestv4.AdductionAbductionFlexion
         private double _degreeOutputDouble;
         private double _degreeOutput;
         private double _painfulArcOutput;
+        private double _userMinPitch;
 
         /// <summary>
         /// Prevents a default instance of the <see cref="MyoDeviceModel"/> class from being created.
@@ -129,7 +133,7 @@ namespace MyoTestv4.AdductionAbductionFlexion
             double calibCheck = _calibrationFactor;
             //Debug.WriteLine("Calibration value: " + calibCheck);
             //Debug.WriteLine("calibration hash code: " + this.GetHashCode());
-            Debug.WriteLine("degree output: " + _degreeOutputDouble);
+            //Debug.WriteLine("degree output: " + _degreeOutputDouble);
             //Debug.WriteLine("degree hash: " + this.GetHashCode());
 
             //Debug.WriteLine("Current pitch: " + _currentPitch);
@@ -183,11 +187,25 @@ namespace MyoTestv4.AdductionAbductionFlexion
         /// </summary>
         public void CallibratePitchMinimumReading()
         {
+
+            _userMinPitch = _currentPitch;
+            Math.Round(_userMinPitch, 2);
+
+            var handlerPitch = PitchUpdated;
+            if (handlerPitch != null)
+            {
+                handlerPitch(_userMinPitch);
+            }           
+           
+            /*
             _pitchMin = _currentPitch;
             _calibrationFactor = 180 / (Math.Abs(_pitchMin) + PITCH_MAX);
             Math.Round(_calibrationFactor, 2);
             _degreeOutputDouble = ((_currentPitch + Math.Abs(_pitchMin)) * _calibrationFactor);
+             * */
         }
+
+
 
         /// <summary>
         /// The _current pitch

@@ -2,7 +2,11 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:MyoTestv4"
-        Title="Gesture Physio" WindowState="Maximized" Icon="pack://application:,,,/Images/gesture_physio_icon.png" ResizeMode="NoResize" Background="#141c28">
+        Title="Gesture Physio"
+        Background="#141c28"
+        Icon="pack://application:,,,/Images/gesture_physio_icon.png"
+        ResizeMode="NoResize"
+        WindowState="Maximized">
 
     <Window.Resources>
         <DataTemplate DataType="{x:Type local:HomeViewModel}">
@@ -11,20 +15,25 @@
         <DataTemplate DataType="{x:Type local:AdductionAbductionFlexionViewModel}">
             <local:AdductionAbductionFlexionView />
         </DataTemplate>
-        
+
     </Window.Resources>
 
     <DockPanel>
-        <Border DockPanel.Dock="Left" BorderBrush="Black" BorderThickness="0,0,1,0">
+        <Border BorderBrush="Black"
+                BorderThickness="0,0,1,0"
+                DockPanel.Dock="Left">
             <ItemsControl ItemsSource="{Binding PageViewModels}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Button Content="{Binding Name}"
-                                Command="{Binding DataContext.ChangePageCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
+                        <Button Height="60"
+                                Margin="30,30"
+                                Background="#00bdde"
+                                Command="{Binding DataContext.ChangePageCommand,
+                                                  RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
                                 CommandParameter="{Binding }"
-                                Height="60"
+                                Content="{Binding Name}"
                                 FontSize="20"
-                                Background="#00bdde" Foreground="White" Margin="30,30"/>
+                                Foreground="White" />
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>

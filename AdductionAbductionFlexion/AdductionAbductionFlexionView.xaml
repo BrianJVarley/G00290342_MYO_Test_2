@@ -104,25 +104,27 @@
                        Source="/GesturePhysio;component/Images/save_icon.png" />
             </Button>
 
+            <Button x:Name="exportBtn"
+                    Width="40"
+                    Height="40"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Bottom"
+                    Background="#141c28"
+                    Command="{Binding Path=DatabaseSearchCommand}">
+                <Image Width="33"
+                       Height="34"
+                       HorizontalAlignment="Right"
+                       VerticalAlignment="Bottom"
+                       Source="/GesturePhysio;component/Images/export_icon.png" />
+            </Button>
+
             <Grid Grid.Column="1">
-                <Button x:Name="searchBtn"
-                        Width="40"
-                        Height="40"
-                        HorizontalAlignment="Left"
-                        VerticalAlignment="Bottom"
-                        Background="#141c28"
-                        Command="{Binding Path=DatabaseSearchCommand}">
-                    <Image Width="33"
-                           Height="34"
-                           HorizontalAlignment="Left"
-                           VerticalAlignment="Bottom"
-                           Source="/GesturePhysio;component/Images/export_icon.png" />
-                </Button>
+
 
                 <Button x:Name="calibBtn"
                         Width="40"
                         Height="40"
-                        HorizontalAlignment="Center"
+                        HorizontalAlignment="Right"
                         VerticalAlignment="Bottom"
                         Background="#141c28"
                         Command="{Binding Path=CalibrationSetCommand}"
@@ -135,6 +137,26 @@
                 </Button>
 
 
+                <TextBox x:Name="pitchTbx"
+                         Width="51"
+                         Margin="41,229,0,28"
+                         HorizontalAlignment="Left"
+                         Background="#141c28"
+                         Foreground="White"
+                         IsReadOnly="True"
+                         Text="{Binding PitchStatus}"
+                         TextWrapping="Wrap" />
+                <TextBox x:Name="pitchMinTbx"
+                         Width="51"
+                         Height="23"
+                         Margin="41,257,0,0"
+                         HorizontalAlignment="Left"
+                         VerticalAlignment="Top"
+                         Background="#141c28"
+                         Foreground="White"
+                         IsReadOnly="True"
+                         Text="*-1.46"
+                         TextWrapping="Wrap" />
                 <gauges:AngularGauge Grid.Row="0"
                                      Width="Auto"
                                      Height="220"
@@ -154,7 +176,6 @@
                                      MinorTickFrequency="2"
                                      Style="{StaticResource FatAngular}"
                                      Value="{Binding DegreeStatus}" />
-
             </Grid>
 
 

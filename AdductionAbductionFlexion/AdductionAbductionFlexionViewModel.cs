@@ -69,7 +69,14 @@ namespace MyoTestv4
             _myoDevice.EndDegreeUpdated += (update) =>
             {
                 EndDegreeStatus = update;    
-            };    
+            };  
+  
+            _myoDevice.PitchUpdated += (update) =>
+            {
+                PitchStatus = update;    
+            };  
+
+
         }
 
         /// <summary>
@@ -187,6 +194,27 @@ namespace MyoTestv4
             }
         }
 
+
+        private double pitchStatus;
+        /// <summary>
+        /// Gets or sets the degree status.
+        /// </summary>
+        /// <value>
+        /// The degree status.
+        /// </value>
+        public double PitchStatus
+        {
+            get { return this.pitchStatus; }
+            set
+            {
+                if (this.pitchStatus != value)
+                {
+                    this.pitchStatus = value;
+                    this.RaisePropertyChanged("PitchStatus");
+                }
+            }
+        }
+
         /// <summary>
         /// The end degree status
         /// </summary>
@@ -276,6 +304,8 @@ namespace MyoTestv4
         public void CallibratePitchMinimumCall(object param)
         {
             _myoDevice.CallibratePitchMinimumReading();
+                    RaisePropertyChanged("PitchStatus");
+
         }
 
         /// <summary>
