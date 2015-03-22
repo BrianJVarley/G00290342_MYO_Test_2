@@ -1,4 +1,4 @@
-﻿<Application x:Class="MyoTestv4.App"
+<Application x:Class="MyoTestv4.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:gauges="http://gu.se/Gauges">
@@ -35,6 +35,7 @@
                                                     Minimum="0"
                                                     Opacity="0.2"
                                                     ReservedSpace="50"
+                                                    TickFrequency="{TemplateBinding TickFrequency}"
                                                     TickLength="55"
                                                     Value="1" />
                             <gauges:AngularBlockBar Fill="White"
