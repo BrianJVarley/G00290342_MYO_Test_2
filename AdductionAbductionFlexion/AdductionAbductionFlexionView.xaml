@@ -102,6 +102,14 @@
                        HorizontalAlignment="Right"
                        VerticalAlignment="Bottom"
                        Source="/GesturePhysio;component/Images/save_icon.png" />
+                <Button.ToolTip>
+                    <ToolTip>
+                        <StackPanel>
+                            <TextBlock FontWeight="Bold">Submit data</TextBlock>
+                            <TextBlock>Submits the progress data.</TextBlock>
+                        </StackPanel>
+                    </ToolTip>
+                </Button.ToolTip>
             </Button>
 
             <Button x:Name="exportBtn"
@@ -116,6 +124,14 @@
                        HorizontalAlignment="Right"
                        VerticalAlignment="Bottom"
                        Source="/GesturePhysio;component/Images/export_icon.png" />
+                <Button.ToolTip>
+                    <ToolTip>
+                        <StackPanel>
+                            <TextBlock FontWeight="Bold">Export data</TextBlock>
+                            <TextBlock>Exports the progress data in CSV format.</TextBlock>
+                        </StackPanel>
+                    </ToolTip>
+                </Button.ToolTip>
             </Button>
 
             <Grid Grid.Column="1">
@@ -134,6 +150,14 @@
                            HorizontalAlignment="Left"
                            VerticalAlignment="Bottom"
                            Source="/GesturePhysio;component/Images/calibration_icon.png" />
+                    <Button.ToolTip>
+                        <ToolTip>
+                            <StackPanel>
+                                <TextBlock FontWeight="Bold">Check calibration</TextBlock>
+                                <TextBlock>Checks the current calibration value against required.</TextBlock>
+                            </StackPanel>
+                        </ToolTip>
+                    </Button.ToolTip>
                 </Button>
 
 

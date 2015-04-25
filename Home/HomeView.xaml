@@ -28,12 +28,13 @@
                    TextWrapping="Wrap"
                    Visibility="{Binding LoggedIn,
                                         Converter={StaticResource BoolToVisibilityConverter}}" />
-        <Image x:Name="imgProfile"
-               Width="100"
-               Height="100"
-               Margin="190,10,0,0"
-               HorizontalAlignment="Left"
-               VerticalAlignment="Top" />
+
+        <TextBlock Margin="0,284,0,0"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   FontSize="6"
+                   Text="*User Notice: Gesture Physio stores your user name and gender for data analytics purposes"
+                   TextWrapping="Wrap" />
 
     </Grid>
 </UserControl>

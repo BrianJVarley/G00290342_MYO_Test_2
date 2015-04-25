@@ -35,6 +35,7 @@
                                                     Minimum="0"
                                                     Opacity="0.2"
                                                     ReservedSpace="50"
+                                                    TickFrequency="{TemplateBinding MajorTickFrequency}"
                                                     TickLength="55"
                                                     Value="1" />
                             <gauges:AngularBlockBar Fill="White"
